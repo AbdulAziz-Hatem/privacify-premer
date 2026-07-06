@@ -1,0 +1,4 @@
+- Redesigned home page with quick stats card showing apps monitored, permissions tracked, and at-risk count
+- Auto Guard camera fix — camera no longer re-blocked during active use (e.g. camera app)
+- Material 3 Expressive design applied to exempted apps page with styled tabs and consistent card shapes
+- Improved empty states and consistent 28dp rounded corners across all cards
