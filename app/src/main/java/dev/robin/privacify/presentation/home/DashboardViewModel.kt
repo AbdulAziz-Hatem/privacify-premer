@@ -180,9 +180,14 @@ class DashboardViewModel(
 			else -> "High risk detected. Lockdown recommended."
 		}
 
+		val totalPermissions = micApps.size + cameraApps.size + locationApps.size
+
 		return current.copy(
 			privacyScore = score,
 			statusSubtitle = status,
+			totalApps = apps.size,
+			totalPermissions = totalPermissions,
+			highRiskCount = highRiskApps.size,
 			micAccessCount = micApps.size,
 			cameraAccessCount = cameraApps.size,
 			locationAccessCount = locationApps.size

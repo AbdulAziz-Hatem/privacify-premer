@@ -469,44 +469,36 @@ fun PrivacifyAutoGuardCard(
 	val isPro = ProFeature.isAutoGuardAvailable()
 	val showProDialog = remember { mutableStateOf(false) }
 
-	val cardColors = listOf(
-		AutoGuardPrimary,
-		AutoGuardPrimary.copy(alpha = 0.85f),
-		AutoGuardGlow.copy(alpha = 0.3f)
-	)
-	Box(
-		modifier = modifier
-			.fillMaxWidth()
-			.clip(MaterialTheme.shapes.extraLarge)
-			.background(
-				Brush.linearGradient(
-					colors = cardColors,
-					start = androidx.compose.ui.geometry.Offset(0f, 0f),
-					end = androidx.compose.ui.geometry.Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
-				)
-			)
-			.padding(MdSpacing.md)
+	Card(
+		modifier = modifier.fillMaxWidth(),
+		shape = MaterialTheme.shapes.extraLarge,
+		colors = CardDefaults.cardColors(
+			containerColor = AutoGuardPrimary
+		),
+		elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
 	) {
 		Row(
-			modifier = Modifier.fillMaxWidth(),
+			modifier = Modifier
+				.fillMaxWidth()
+				.padding(18.dp),
 			verticalAlignment = Alignment.CenterVertically
 		) {
 			Column(modifier = Modifier.weight(1f)) {
 				Text(
 					text = "Auto-Guard",
-					style = MaterialTheme.typography.titleLarge,
-					fontWeight = FontWeight.Black,
+					style = MaterialTheme.typography.titleMedium,
+					fontWeight = FontWeight.Bold,
 					color = Color.White
 				)
-				Spacer(modifier = Modifier.height(MdSpacing.xxs))
+				Spacer(modifier = Modifier.height(2.dp))
 				Text(
-					text = if (enabled) "Automatically manages kill switches\nwhen sensors are in use"
+					text = if (enabled) "Monitors sensors & pauses kill switches when in use"
 					else "Intelligent sensor protection",
 					style = MaterialTheme.typography.bodySmall,
-					color = Color.White.copy(alpha = 0.85f)
+					color = Color.White.copy(alpha = 0.8f)
 				)
 			}
-			PrivacifySwitch(
+			Switch(
 				checked = enabled,
 				onCheckedChange = { newValue ->
 					if (isPro) {
@@ -514,7 +506,13 @@ fun PrivacifyAutoGuardCard(
 					} else {
 						showProDialog.value = true
 					}
-				}
+				},
+				colors = SwitchDefaults.colors(
+					checkedThumbColor = Color.White,
+					checkedTrackColor = Color.White.copy(alpha = 0.3f),
+					uncheckedThumbColor = Color.White.copy(alpha = 0.7f),
+					uncheckedTrackColor = Color.White.copy(alpha = 0.15f)
+				)
 			)
 		}
 	}
