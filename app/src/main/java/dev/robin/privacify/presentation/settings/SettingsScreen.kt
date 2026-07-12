@@ -561,7 +561,20 @@ private fun AboutSection() {
 					iconBackground = MaterialTheme.colorScheme.primaryContainer,
 					onClick = {
 						try {
-							uriHandler.openUri("https://github.com/robinsrk/privacify")
+							uriHandler.openUri("https://github.com/AbdulAziz-Hatem/privacify-premer")
+						} catch (_: Exception) {}
+					}
+				)
+				PrivacifyDivider(modifier = Modifier.padding(start = 56.dp))
+				SettingsRow(
+					title = "Pro Engineering",
+					subtitle = "by AbdulAziz-Hatem \u2764",
+					icon = Icons.Outlined.Star,
+					iconTint = MaterialTheme.colorScheme.tertiary,
+					iconBackground = MaterialTheme.colorScheme.tertiaryContainer,
+					onClick = {
+						try {
+							uriHandler.openUri("https://github.com/AbdulAziz-Hatem")
 						} catch (_: Exception) {}
 					}
 				)
