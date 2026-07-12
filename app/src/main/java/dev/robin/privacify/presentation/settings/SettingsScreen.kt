@@ -569,7 +569,7 @@ private fun AboutSection() {
 				SettingsRow(
 					title = "Pro Engineering",
 					subtitle = "by AbdulAziz-Hatem \u2764",
-					icon = Icons.Outlined.VerifiedUser,
+					icon = Icons.Outlined.Shield,
 					iconTint = MaterialTheme.colorScheme.tertiary,
 					iconBackground = MaterialTheme.colorScheme.tertiaryContainer,
 					onClick = {
