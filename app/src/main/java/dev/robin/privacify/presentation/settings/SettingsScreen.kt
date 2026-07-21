@@ -236,6 +236,23 @@ private fun ProtectionSection(
 			}
 			PrivacifyExpressiveCard {
 				SettingsRow(
+					title = "Toast Notifications",
+					subtitle = "Show toast when sensors are blocked or unblocked",
+					icon = Icons.Outlined.Notifications,
+					iconTint = AutoGuardPrimary,
+					iconBackground = AutoGuardPrimary.copy(alpha = 0.12f),
+					trailing = {
+						PrivacifySwitch(
+							checked = prefs.getBoolean("auto_guard_toast_enabled", true),
+							onCheckedChange = { enabled ->
+								prefs.edit().putBoolean("auto_guard_toast_enabled", enabled).apply()
+							}
+						)
+					}
+				)
+			}
+			PrivacifyExpressiveCard {
+				SettingsRow(
 					title = "Exempted Apps",
 					subtitle = "Apps that bypass Auto Guard sensor blocking",
 					icon = Icons.Outlined.Shield,
