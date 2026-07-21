@@ -1,0 +1,3 @@
+- Auto Guard toast notifications — shows toast when sensors are blocked or unblocked (configurable in settings)
+- Fix Auto Guard not starting after device reboot — boot receiver now properly exported
+- Fix Auto Guard service not restarting after app update — added MY_PACKAGE_REPLACED handler
