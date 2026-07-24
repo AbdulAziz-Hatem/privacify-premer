@@ -42,6 +42,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.Image
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.painter.BitmapPainter
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.robin.privacify.domain.apps.AppPrivacyInfo
 import dev.robin.privacify.domain.apps.AppRiskLevel
@@ -224,13 +230,37 @@ private fun AppRow(
 			verticalAlignment = Alignment.CenterVertically,
 			horizontalArrangement = Arrangement.spacedBy(12.dp)
 		) {
-			Box(
-				modifier = Modifier
-					.size(40.dp)
-					.clip(CircleShape)
-					.background(riskColor.copy(alpha = 0.12f)),
-				contentAlignment = Alignment.Center
-			) {
+		val context = LocalContext.current
+		val iconPainter = remember(app.packageName) {
+			try {
+				val pm = context.packageManager
+				val ai = pm.getApplicationInfo(app.packageName, 0)
+				val drawable = pm.getApplicationIcon(ai)
+				val w = drawable.intrinsicWidth.coerceAtLeast(1)
+				val h = drawable.intrinsicHeight.coerceAtLeast(1)
+				val bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+				val canvas = Canvas(bitmap)
+				drawable.setBounds(0, 0, w, h)
+				drawable.draw(canvas)
+				BitmapPainter(bitmap.asImageBitmap())
+			} catch (_: Exception) {
+				null
+			}
+		}
+		Box(
+			modifier = Modifier
+				.size(40.dp)
+				.clip(CircleShape)
+				.background(riskColor.copy(alpha = 0.12f)),
+			contentAlignment = Alignment.Center
+		) {
+			if (iconPainter != null) {
+				Image(
+					painter = iconPainter,
+					contentDescription = app.appName,
+					modifier = Modifier.size(32.dp).clip(CircleShape)
+				)
+			} else {
 				Text(
 					text = app.appName.firstOrNull()?.uppercase() ?: "",
 					color = riskColor,
@@ -238,6 +268,7 @@ private fun AppRow(
 					fontWeight = FontWeight.Black
 				)
 			}
+		}
 			Column(modifier = Modifier.weight(1f)) {
 				Row(
 					modifier = Modifier.fillMaxWidth(),
