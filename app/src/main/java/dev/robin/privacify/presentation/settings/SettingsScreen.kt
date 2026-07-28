@@ -22,6 +22,7 @@ import androidx.compose.material.icons.outlined.CloudDownload
 import androidx.compose.material.icons.outlined.Code
 import androidx.compose.material.icons.outlined.DarkMode
 import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.Mic
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.PowerSettingsNew
@@ -228,6 +229,22 @@ private fun ProtectionSection(
 								onCheckedChange = { enabled ->
 									locationEnabled = enabled
 									prefs.edit().putBoolean("auto_guard_location_enabled", enabled).apply()
+								}
+							)
+						}
+					)
+					PrivacifyDivider()
+					SettingsRow(
+						title = "Face Unlock",
+						subtitle = "Unblock camera briefly when screen turns on for face unlock",
+						icon = Icons.Outlined.Lock,
+						iconTint = MaterialTheme.colorScheme.secondary,
+						iconBackground = MaterialTheme.colorScheme.secondary.copy(alpha = 0.12f),
+						trailing = {
+							PrivacifySwitch(
+								checked = prefs.getBoolean("auto_guard_face_unlock_enabled", true),
+								onCheckedChange = { enabled ->
+									prefs.edit().putBoolean("auto_guard_face_unlock_enabled", enabled).apply()
 								}
 							)
 						}
