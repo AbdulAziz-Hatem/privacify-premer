@@ -1,0 +1,4 @@
+- Add Face Unlock support — camera briefly unblocked when screen turns on
+- Add Face Unlock toggle to Auto Guard settings
+- Reduce battery drain from sensor monitoring polling loops
+- Fix Face Unlock pre-unblocking camera unnecessarily while screen is off
