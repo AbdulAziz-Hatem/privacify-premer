@@ -75,7 +75,7 @@ fun PrivacifyCard(
 	Card(
 		modifier = modifier
 			.then(
-				if (onClick != null) Modifier.clickable { onClick() }
+				if (onClick != null) Modifier.semantics(mergeDescendants = true) { role = Role.Button }.clickable { onClick() }
 				else Modifier
 			),
 		shape = MaterialTheme.shapes.large,
@@ -112,7 +112,7 @@ fun PrivacifyExpressiveCard(
 	Card(
 		modifier = modifier
 			.then(
-				if (onClick != null) Modifier.clickable { onClick() }
+				if (onClick != null) Modifier.semantics(mergeDescendants = true) { role = Role.Button }.clickable { onClick() }
 				else Modifier
 			),
 		shape = MaterialTheme.shapes.extraLarge,
@@ -137,7 +137,7 @@ fun PrivacifyGradientCard(
 			.clip(MaterialTheme.shapes.medium)
 			.background(Brush.linearGradient(colors))
 			.then(
-				if (onClick != null) Modifier.clickable { onClick() }
+				if (onClick != null) Modifier.semantics(mergeDescendants = true) { role = Role.Button }.clickable { onClick() }
 				else Modifier
 			)
 	) {

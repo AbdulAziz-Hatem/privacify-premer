@@ -58,6 +58,8 @@ import dev.robin.privacify.presentation.settings.ExemptionsScreen
 import dev.robin.privacify.presentation.settings.HostsEditorScreen
 import dev.robin.privacify.presentation.settings.SettingsScreen
 import kotlinx.coroutines.flow.first
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.ui.semantics.Role
 
 @Composable
 fun PrivacifyApp() {
@@ -208,7 +210,7 @@ private fun FloatingToolbarItem(
 	Box(
 		modifier = Modifier
 			.clip(RoundedCornerShape(999.dp))
-			.clickable { onClick() }
+			.selectable(selected = selected, onClick = { onClick() }, role = Role.Tab)
 			.widthIn(min = 56.dp)
 			.animateContentSize(
 				spring(

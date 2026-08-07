@@ -62,6 +62,7 @@ import dev.robin.privacify.ui.theme.AmberVibrant
 import dev.robin.privacify.ui.theme.MdSpacing
 import dev.robin.privacify.ui.theme.OrangeVibrant
 import dev.robin.privacify.ui.theme.RedVibrant
+import androidx.compose.ui.semantics.Role
 
 @Composable
 fun LockdownScreen(
@@ -245,6 +246,7 @@ private fun PanicButton(
 				.semantics {
 					contentDescription = if (activated) AppContextProvider.context.getString(R.string.lockdown_deactivate_cd) else AppContextProvider.context.getString(R.string.lockdown_activate_cd)
 					stateDescription = if (activated) AppContextProvider.context.getString(R.string.state_active) else AppContextProvider.context.getString(R.string.state_inactive)
+					role = Role.Button
 				},
 			contentAlignment = Alignment.Center
 		) {
