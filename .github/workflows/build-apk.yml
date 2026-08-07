@@ -1,4 +1,4 @@
-name: Build APK
+name: Build & Sign APK
 
 on:
   workflow_dispatch:
@@ -6,11 +6,12 @@ on:
     tags:
       - "v*"
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
       - name: Checkout repository
@@ -38,6 +39,53 @@ jobs:
       - name: Build debug APK
         run: ./gradlew assembleDebug
 
+      - name: Decode keystore
+        env:
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+        run: |
+          if [ -z "$SIGNING_KEY" ]; then
+            echo "Error: SIGNING_KEY secret is not set"
+            exit 1
+          fi
+          echo "$SIGNING_KEY" | base64 --decode > release.keystore
+          if [ ! -f release.keystore ] || [ ! -s release.keystore ]; then
+            echo "Error: Failed to create keystore file"
+            exit 1
+          fi
+
+      - name: Build release APK (unsigned)
+        run: ./gradlew assembleRelease
+
+      - name: Align and sign APK
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          if [ -z "$KEYSTORE_PASSWORD" ] || [ -z "$KEY_ALIAS" ] || [ -z "$KEY_PASSWORD" ]; then
+            echo "Error: One or more signing secrets are not set"
+            exit 1
+          fi
+          UNSIGNED_APK="app/build/outputs/apk/release/app-release-unsigned.apk"
+          ALIGNED_APK="app/build/outputs/apk/release/app-release-aligned.apk"
+          SIGNED_APK="app/build/outputs/apk/release/Privacify-signed.apk"
+          if [ ! -f "$UNSIGNED_APK" ]; then
+            echo "Error: Unsigned APK not found"
+            exit 1
+          fi
+          ${ANDROID_HOME}/build-tools/34.0.0/zipalign -v -f 4 "$UNSIGNED_APK" "$ALIGNED_APK"
+          ${ANDROID_HOME}/build-tools/34.0.0/apksigner sign \
+            --ks release.keystore \
+            --ks-pass pass:"${KEYSTORE_PASSWORD}" \
+            --ks-key-alias "${KEY_ALIAS}" \
+            --key-pass pass:"${KEY_PASSWORD}" \
+            --v2-signing-enabled true \
+            --v3-signing-enabled true \
+            --out "$SIGNED_APK" \
+            "$ALIGNED_APK"
+          echo "Verifying APK..."
+          ${ANDROID_HOME}/build-tools/34.0.0/apksigner verify --verbose "$SIGNED_APK"
+
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
@@ -45,12 +93,18 @@ jobs:
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
 
-      - name: Build release APK (unsigned)
-        run: ./gradlew assembleRelease
-
-      - name: Upload release APK (unsigned)
+      - name: Upload signed APK
         uses: actions/upload-artifact@v4
         with:
-          name: Privacify-Release-Unsigned
-          path: app/build/outputs/apk/release/app-release-unsigned.apk
+          name: Privacify-Signed
+          path: app/build/outputs/apk/release/Privacify-signed.apk
           if-no-files-found: error
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: app/build/outputs/apk/release/Privacify-signed.apk
+          generate_release_notes: true
+          draft: false
+          prerelease: false
