@@ -408,7 +408,7 @@ fun SensorCard(
 			.size(96.dp)
 			.semantics {
 				this.contentDescription = AppContextProvider.context.getString(R.string.ds_sensor_desc, title, if (active) AppContextProvider.context.getString(R.string.ds_blocked) else AppContextProvider.context.getString(R.string.ds_monitoring))
-				this.stateDescription = if (active) AppContextProvider.context.getString(R.string.ds_blocked) else AppContextProvider.context.getString(R.string.state_active)
+				this.stateDescription = if (active) AppContextProvider.context.getString(R.string.ds_blocked) else AppContextProvider.context.getString(R.string.ds_not_blocked)
 				this.role = Role.Button
 			}
 			.clickable { onClick() },
