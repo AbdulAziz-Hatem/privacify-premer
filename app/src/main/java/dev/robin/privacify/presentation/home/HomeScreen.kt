@@ -68,6 +68,8 @@ import dev.robin.privacify.ui.theme.RedVibrant
 import dev.robin.privacify.ui.theme.ScoreGreen
 import dev.robin.privacify.ui.theme.ScoreOrange
 import dev.robin.privacify.ui.theme.ScoreRed
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.LiveRegionMode
 
 @Composable
 fun HomeScreen() {
@@ -203,7 +205,8 @@ private fun PrivacyScoreCard(
 				Text(
 					text = subtitle,
 					style = MaterialTheme.typography.bodySmall,
-					color = MaterialTheme.colorScheme.onSurfaceVariant
+					color = MaterialTheme.colorScheme.onSurfaceVariant,
+					modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite }
 				)
 			}
 		}
@@ -337,7 +340,8 @@ private fun LockdownRow(
 					},
 					style = MaterialTheme.typography.bodySmall,
 					color = if (isActive) Color.White.copy(alpha = 0.8f)
-					else MaterialTheme.colorScheme.onSurfaceVariant
+					else MaterialTheme.colorScheme.onSurfaceVariant,
+					modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite }
 				)
 			}
 			if (isActive) {
