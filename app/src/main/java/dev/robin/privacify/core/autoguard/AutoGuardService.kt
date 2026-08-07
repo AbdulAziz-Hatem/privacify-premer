@@ -11,9 +11,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.hardware.camera2.CameraManager
 import android.media.AudioManager
-import android.os.Handler
 import android.os.IBinder
-import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import dev.robin.privacify.R
@@ -75,7 +73,6 @@ class AutoGuardService : Service() {
     private lateinit var sensorLog: SensorLogRepository
     private lateinit var cameraManager: CameraManager
     private lateinit var audioManager: AudioManager
-    private val mainHandler = Handler(Looper.getMainLooper())
     private val cameraExecutor = Executors.newSingleThreadExecutor()
 
     private var cameraInUse = false
@@ -87,10 +84,6 @@ class AutoGuardService : Service() {
     private val cameraCallback = object : CameraManager.AvailabilityCallback() {
         override fun onCameraUnavailable(cameraId: String) { cameraInUse = true }
         override fun onCameraAvailable(cameraId: String) { cameraInUse = false }
-    }
-
-    private val audioModeCallback = object : AudioManager.AudioModeCallback() {
-        override fun onAudioModeChanged(mode: Int) { callActive = isCallMode(mode) }
     }
 
     override fun onCreate() {
@@ -110,8 +103,7 @@ class AutoGuardService : Service() {
 
     override fun onDestroy() {
         scope.cancel()
-        try { cameraManager.unregisterCallback(cameraCallback) } catch (_: Exception) {}
-        try { audioManager.unregisterAudioModeCallback(audioModeCallback) } catch (_: Exception) {}
+        try { cameraManager.unregisterAvailabilityCallback(cameraCallback) } catch (_: Exception) {}
         cameraExecutor.shutdown()
         Log.d(TAG, "Auto-Guard service stopped")
         super.onDestroy()
@@ -126,11 +118,6 @@ class AutoGuardService : Service() {
         try {
             cameraManager.registerAvailabilityCallback(cameraExecutor, cameraCallback)
         } catch (e: Exception) { Log.w(TAG, "camera callback error", e) }
-        try {
-            if (android.os.Build.VERSION.SDK_INT >= 23) {
-                audioManager.registerAudioModeCallback(audioModeCallback, mainHandler)
-            }
-        } catch (e: Exception) { Log.w(TAG, "audio callback error", e) }
     }
 
     private suspend fun monitorLoop() {
@@ -156,6 +143,7 @@ class AutoGuardService : Service() {
         val cameraOn = shared.getBoolean("auto_guard_camera_enabled", true)
         val locationOn = shared.getBoolean("auto_guard_location_enabled", false)
         val toasts = prefs.autoGuardToastEnabled.value
+        callActive = isCallMode(audioManager.mode)
         val foreground = getForegroundApp()
 
         val micBlock = micOn && !callActive
