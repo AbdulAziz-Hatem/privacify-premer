@@ -267,4 +267,10 @@
 	<string name="action_force_revoke_pending">فرض سحب الأذونات</string>
 	<string name="action_freeze_pending">تجميد هذا التطبيق</string>
 	<string name="action_block_sensors_pending">حظر الوصول للمستشعرات</string>
+	<string name="scan_frequency_daily">يومي</string>
+	<string name="scan_frequency_weekly">أسبوعي</string>
+	<string name="scan_frequency_manual">يدوي</string>
+	<string name="theme_light_mode">الوضع الفاتح</string>
+	<string name="theme_dark_mode">الوضع الداكن</string>
+	<string name="theme_system_default">الافتراضي من النظام</string>
 </resources>
