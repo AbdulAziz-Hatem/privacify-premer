@@ -79,6 +79,8 @@ import dev.robin.privacify.ui.theme.BlueVibrant
 import dev.robin.privacify.ui.theme.GreenVibrant
 import dev.robin.privacify.ui.theme.PurpleVibrant
 import dev.robin.privacify.ui.theme.RedVibrant
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.semantics
 
 @Composable
 fun SettingsScreen(onNavigateToExemptions: () -> Unit = {}) {
@@ -336,7 +338,7 @@ private fun SettingsRow(
 		modifier = Modifier
 			.fillMaxWidth()
 			.then(
-				if (onClick != null) Modifier.clickable { onClick() }
+				if (onClick != null) Modifier.semantics(mergeDescendants = true) { role = Role.Button }.clickable { onClick() }
 				else Modifier
 			)
 			.padding(horizontal = 16.dp, vertical = 14.dp),

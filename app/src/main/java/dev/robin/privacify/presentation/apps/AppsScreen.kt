@@ -60,6 +60,9 @@ import dev.robin.privacify.ui.components.PrivacifyExpressiveCard
 import dev.robin.privacify.ui.theme.GreenVibrant
 import dev.robin.privacify.ui.theme.OrangeVibrant
 import dev.robin.privacify.ui.theme.RedVibrant
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.ui.semantics.Role
+import androidx.compose.foundation.layout.heightIn
 
 @Composable
 fun AppsScreen() {
@@ -201,8 +204,9 @@ private fun FilterChip(
 		modifier = Modifier
 			.clip(RoundedCornerShape(999.dp))
 			.background(bgColor)
-			.clickable { onClick() }
+			.selectable(selected = selected, onClick = { onClick() }, role = Role.Tab)
 			.padding(horizontal = 16.dp, vertical = 10.dp)
+			.heightIn(min = 48.dp)
 	) {
 		Text(
 			text = label,
