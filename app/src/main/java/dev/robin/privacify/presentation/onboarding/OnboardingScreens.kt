@@ -1,6 +1,7 @@
 package dev.robin.privacify.presentation.onboarding
 
 import androidx.compose.ui.res.stringResource
+import dev.robin.privacify.R
 
 import android.Manifest
 import android.content.Context

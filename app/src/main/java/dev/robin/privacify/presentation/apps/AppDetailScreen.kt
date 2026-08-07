@@ -1,6 +1,7 @@
 package dev.robin.privacify.presentation.apps
 
 import androidx.compose.ui.res.stringResource
+import dev.robin.privacify.R
 
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager

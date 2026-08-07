@@ -1,6 +1,7 @@
 package dev.robin.privacify.presentation.analytics
 
 import androidx.compose.ui.res.stringResource
+import dev.robin.privacify.R
 import androidx.compose.ui.res.pluralStringResource
 
 import androidx.compose.foundation.background

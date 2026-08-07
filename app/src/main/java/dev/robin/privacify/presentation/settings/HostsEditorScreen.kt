@@ -1,6 +1,7 @@
 package dev.robin.privacify.presentation.settings
 
 import androidx.compose.ui.res.stringResource
+import dev.robin.privacify.R
 
 import android.widget.Toast
 import androidx.compose.foundation.background

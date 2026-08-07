@@ -1,6 +1,7 @@
 package dev.robin.privacify.ui.components
 
 import androidx.compose.ui.res.stringResource
+import dev.robin.privacify.R
 import dev.robin.privacify.core.utils.AppContextProvider
 
 import androidx.compose.animation.animateColorAsState
