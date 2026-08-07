@@ -273,4 +273,5 @@
 	<string name="theme_light_mode">الوضع الفاتح</string>
 	<string name="theme_dark_mode">الوضع الداكن</string>
 	<string name="theme_system_default">الافتراضي من النظام</string>
+	<string name="ds_not_blocked">غير محظور</string>
 </resources>
