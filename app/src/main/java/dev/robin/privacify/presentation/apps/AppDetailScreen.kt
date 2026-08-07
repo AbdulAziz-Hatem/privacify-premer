@@ -1,6 +1,7 @@
 package dev.robin.privacify.presentation.apps
 
 import androidx.compose.ui.res.stringResource
+import dev.robin.privacify.core.utils.AppContextProvider
 import dev.robin.privacify.R
 
 import android.content.pm.PackageInfo
@@ -515,7 +516,7 @@ private fun AdvancedControls(
 				description = if (isRooted) stringResource(R.string.action_force_revoke_desc_rooted) else stringResource(R.string.requires_root_access),
 				enabled = isRooted,
 				onClick = {
-					pendingAction = stringResource(R.string.action_force_revoke_pending)
+					pendingAction = AppContextProvider.context.getString(R.string.action_force_revoke_pending)
 					pendingActionId = "revoke"
 					showConfirmDialog = true
 				}
@@ -526,7 +527,7 @@ private fun AdvancedControls(
 				description = if (isRooted) stringResource(R.string.action_freeze_app_desc_rooted) else stringResource(R.string.requires_root_access),
 				enabled = isRooted,
 				onClick = {
-					pendingAction = stringResource(R.string.action_freeze_pending)
+					pendingAction = AppContextProvider.context.getString(R.string.action_freeze_pending)
 					pendingActionId = "freeze"
 					showConfirmDialog = true
 				}
@@ -537,7 +538,7 @@ private fun AdvancedControls(
 				description = if (isRooted) stringResource(R.string.action_block_sensors_desc_rooted) else stringResource(R.string.requires_root_access),
 				enabled = isRooted,
 				onClick = {
-					pendingAction = stringResource(R.string.action_block_sensors_pending)
+					pendingAction = AppContextProvider.context.getString(R.string.action_block_sensors_pending)
 					pendingActionId = "sensors"
 					showConfirmDialog = true
 				}
