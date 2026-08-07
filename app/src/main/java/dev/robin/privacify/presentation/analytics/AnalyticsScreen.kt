@@ -65,6 +65,9 @@ import dev.robin.privacify.ui.theme.RedVibrant
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
 
 @Composable
 fun AnalyticsScreen(
@@ -401,7 +404,7 @@ private fun SensorHistoryCard(
 					style = MaterialTheme.typography.bodySmall,
 					color = MaterialTheme.colorScheme.onSurfaceVariant,
 					textAlign = TextAlign.Start,
-					modifier = Modifier.padding(top = 4.dp)
+					modifier = Modifier.padding(top = 4.dp).semantics { liveRegion = LiveRegionMode.Polite }
 				)
 			} else {
 				val sessions = pairMiniSessions(events).take(3)
