@@ -10,6 +10,7 @@ import dev.robin.privacify.core.theme.AppThemeMode
 import dev.robin.privacify.core.theme.ThemePreferenceManager
 import dev.robin.privacify.pro.utils.ShellUtils
 import dev.robin.privacify.R
+import dev.robin.privacify.core.autoguard.AutoGuardService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -90,6 +91,7 @@ class SettingsViewModel(
 	fun onAutomationChanged(enabled: Boolean) {
 		prefs.setAutomationEnabled(enabled)
 		dev.robin.privacify.core.provider.PermissionAutomationProvider.provide().automatePermissions(enabled)
+		if (enabled) AutoGuardService.start(appContext) else AutoGuardService.stop(appContext)
 	}
 
 	fun onAutostartChanged(enabled: Boolean) {

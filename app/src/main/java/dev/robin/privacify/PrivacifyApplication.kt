@@ -43,8 +43,8 @@ class PrivacifyApplication : Application() {
 
 		if (prefs.automationEnabled.value) {
 			try {
-				val controller = PermissionAutomationProvider.provide()
-				controller.automatePermissions(true)
+				PermissionAutomationProvider.provide().automatePermissions(true)
+				dev.robin.privacify.core.autoguard.AutoGuardService.start(this)
 			} catch (_: Exception) {}
 		}
 
