@@ -1,4 +1,13 @@
-- Add Face Unlock support — camera briefly unblocked when screen turns on
-- Add Face Unlock toggle to Auto Guard settings
-- Reduce battery drain from sensor monitoring polling loops
-- Fix Face Unlock pre-unblocking camera unnecessarily while screen is off
+v2.7-ar — النسخة العربية
+• ترجمة كاملة لواجهة التطبيق إلى اللغة العربية (228 نصاً)
+• دعم كامل للعرض من اليمين إلى اليسار (RTL)
+• إضافة خيار «العربية» في قائمة اللغات
+• بناء موقّع رقمياً بمفتاح توقيع مخصص
+• يشمل جميع ميزات v2.7: فتح القفل بالوجه، وإشعارات الحماية التلقائية
+
+v2.7-ar — Arabic Edition
+• Full Arabic UI translation (228 strings)
+• Full RTL layout support
+• Arabic added to the language selector
+• Digitally signed with a dedicated release key
+• Includes all v2.7 features: Face Unlock, Auto-Guard toast notifications
