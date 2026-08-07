@@ -27,6 +27,9 @@ class UserPreferencesManager(context: Context) {
     private val _shellType = MutableStateFlow(prefs.getString("shell_type", "auto") ?: "auto")
     val shellType: StateFlow<String> = _shellType
 
+    private val _autoGuardToastEnabled = MutableStateFlow(prefs.getBoolean("auto_guard_toast_enabled", true))
+    val autoGuardToastEnabled: StateFlow<Boolean> = _autoGuardToastEnabled
+
     fun setTheme(mode: AppThemeMode) {
         _themeMode.value = mode
         prefs.edit().putString("theme_mode", mode.name).apply()
@@ -64,6 +67,11 @@ class UserPreferencesManager(context: Context) {
     fun setShellType(type: String) {
         _shellType.value = type
         prefs.edit().putString("shell_type", type).apply()
+    }
+
+    fun setAutoGuardToastEnabled(enabled: Boolean) {
+        _autoGuardToastEnabled.value = enabled
+        prefs.edit().putBoolean("auto_guard_toast_enabled", enabled).apply()
     }
 
     private fun loadTheme(): AppThemeMode {

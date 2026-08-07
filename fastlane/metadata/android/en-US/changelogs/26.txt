@@ -1,0 +1,5 @@
+- App list now shows real app icons instead of letter placeholders
+- Fix crash when showing Auto Guard toast from background thread
+- Fix Auto Guard safety net triggering false re-blocks on unsupported devices
+- Fix camera monitoring missing some camera apps — added dumpsys polling fallback
+- Fix incoming calls not unblocking microphone during ringing state

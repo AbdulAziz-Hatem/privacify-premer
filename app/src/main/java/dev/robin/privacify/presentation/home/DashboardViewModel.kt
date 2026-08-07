@@ -1,5 +1,9 @@
 package dev.robin.privacify.presentation.home
 
+import androidx.compose.ui.res.stringResource
+import dev.robin.privacify.R
+import dev.robin.privacify.core.utils.AppContextProvider
+
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -87,9 +91,9 @@ class DashboardViewModel(
 	}
 	fun onScanNowClicked() {
 		viewModelScope.launch {
-			mutableState.update { it.copy(isScanning = true, statusSubtitle = "Scanning system...") }
+			mutableState.update { it.copy(isScanning = true, statusSubtitle = AppContextProvider.context.getString(R.string.status_scanning)) }
 			permissionScanner.refresh()
-			mutableState.update { it.copy(isScanning = false, statusSubtitle = "Scan complete. Dashboard is up to date.") }
+			mutableState.update { it.copy(isScanning = false, statusSubtitle = AppContextProvider.context.getString(R.string.status_scan_complete)) }
 		}
 	}
 
@@ -175,9 +179,9 @@ class DashboardViewModel(
 		if (score < 0) score = 0
 
 		val status = when {
-			score >= 90 -> "System integrity verified. No unauthorized access detected."
-			score >= 75 -> "Moderate risk detected. Review high permission apps."
-			else -> "High risk detected. Lockdown recommended."
+			score >= 90 -> AppContextProvider.context.getString(R.string.score_status_verified)
+			score >= 75 -> AppContextProvider.context.getString(R.string.score_status_moderate)
+			else -> AppContextProvider.context.getString(R.string.score_status_high)
 		}
 
 		val totalPermissions = micApps.size + cameraApps.size + locationApps.size

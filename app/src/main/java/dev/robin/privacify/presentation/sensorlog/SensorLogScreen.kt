@@ -1,5 +1,9 @@
 package dev.robin.privacify.presentation.sensorlog
 
+import androidx.compose.ui.res.stringResource
+import dev.robin.privacify.R
+import dev.robin.privacify.core.utils.AppContextProvider
+
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
@@ -93,14 +97,14 @@ fun SensorLogScreen(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = "Sensor Usage History",
+                            text = stringResource(R.string.analytics_sensor_history),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Upgrade to Pro to view sensor usage history.",
+                            text = stringResource(R.string.sensorlog_pro_required),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                             textAlign = TextAlign.Center,
@@ -142,14 +146,14 @@ fun SensorLogScreen(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = "No sensor usage recorded yet",
+                            text = stringResource(R.string.sensorlog_empty),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Sensor usage logs will appear here\nafter Auto-Guard detects activity.",
+                            text = stringResource(R.string.sensorlog_empty_body),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                             textAlign = TextAlign.Center,
@@ -207,12 +211,12 @@ private fun TopBar(
         IconButton(onClick = onBack) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = "Back",
+                contentDescription = stringResource(R.string.action_back),
                 tint = MaterialTheme.colorScheme.onSurface
             )
         }
         Text(
-            text = "Sensor Usage History",
+            text = stringResource(R.string.analytics_sensor_history),
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Black,
             modifier = Modifier.weight(1f)
@@ -221,7 +225,7 @@ private fun TopBar(
             IconButton(onClick = { showConfirm = true }) {
                 Icon(
                     imageVector = Icons.Default.Delete,
-                    contentDescription = "Clear history",
+                    contentDescription = stringResource(R.string.sensorlog_clear_history_cd),
                     tint = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
@@ -248,24 +252,24 @@ private fun ClearConfirmDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = "Clear History?",
+                text = stringResource(R.string.sensorlog_clear_title),
                 fontWeight = FontWeight.Bold
             )
         },
         text = {
-            Text("This will permanently delete all sensor usage logs.")
+            Text(stringResource(R.string.sensorlog_clear_message))
         },
         confirmButton = {
             androidx.compose.material3.TextButton(onClick = onConfirm) {
                 Text(
-                    text = "Clear",
+                    text = stringResource(R.string.action_clear),
                     color = MaterialTheme.colorScheme.error
                 )
             }
         },
         dismissButton = {
             androidx.compose.material3.TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(R.string.action_cancel))
             }
         }
     )
@@ -366,7 +370,7 @@ private fun TimelineSessionCard(session: SensorSession) {
                     )
                 }
                 Text(
-                    text = "$sensorLabel access",
+                    text = stringResource(R.string.sensorlog_access, sensorLabel),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -445,7 +449,7 @@ private fun TimelineSessionCard(session: SensorSession) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Started",
+                        text = stringResource(R.string.sensorlog_started),
                         style = MaterialTheme.typography.bodySmall,
                         fontWeight = FontWeight.SemiBold,
                         color = GreenVibrant
@@ -484,7 +488,7 @@ private fun TimelineSessionCard(session: SensorSession) {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "Stopped",
+                            text = stringResource(R.string.sensorlog_stopped),
                             style = MaterialTheme.typography.bodySmall,
                             fontWeight = FontWeight.SemiBold,
                             color = RedVibrant
@@ -499,7 +503,7 @@ private fun TimelineSessionCard(session: SensorSession) {
                     Spacer(modifier = Modifier.height(4.dp))
 
                     Text(
-                        text = "Active",
+                        text = stringResource(R.string.sensorlog_active),
                         style = MaterialTheme.typography.bodySmall,
                         fontWeight = FontWeight.Bold,
                         color = GreenVibrant,
@@ -512,7 +516,7 @@ private fun TimelineSessionCard(session: SensorSession) {
 }
 
 private fun formatDuration(start: Long, stop: Long?): String {
-    if (stop == null) return "Running"
+    if (stop == null) return AppContextProvider.context.getString(R.string.time_running)
     val diffMs = stop - start
     val seconds = diffMs / 1000
     if (seconds < 60) return "${seconds}s"
@@ -582,9 +586,9 @@ private fun sensorColor(type: String): Color = when (type) {
 }
 
 private fun sensorLabel(type: String): String = when (type) {
-    SensorEvent.TYPE_MIC -> "Mic"
-    SensorEvent.TYPE_CAMERA -> "Camera"
-    SensorEvent.TYPE_LOCATION -> "Location"
+    SensorEvent.TYPE_MIC -> AppContextProvider.context.getString(R.string.sensor_mic)
+    SensorEvent.TYPE_CAMERA -> AppContextProvider.context.getString(R.string.sensor_camera)
+    SensorEvent.TYPE_LOCATION -> AppContextProvider.context.getString(R.string.sensor_location)
     else -> type
 }
 
@@ -609,8 +613,8 @@ private fun groupSessionsByDate(sessions: List<SensorSession>): List<DateGroup> 
 
     for (session in sessions) {
         val label = when {
-            session.startTime >= todayStart -> "Today"
-            session.startTime >= yesterdayStart -> "Yesterday"
+            session.startTime >= todayStart -> AppContextProvider.context.getString(R.string.time_today)
+            session.startTime >= yesterdayStart -> AppContextProvider.context.getString(R.string.time_yesterday)
             else -> dateGroupFormat.format(Date(session.startTime))
         }
         if (currentLabel != label) {

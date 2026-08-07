@@ -1,5 +1,8 @@
 package dev.robin.privacify.presentation.settings
 
+import androidx.compose.ui.res.stringResource
+import dev.robin.privacify.R
+
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -74,12 +77,12 @@ fun HostsEditorScreen(
 				IconButton(onClick = onBack) {
 					Icon(
 						imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-						contentDescription = "Back"
+						contentDescription = stringResource(R.string.action_back)
 					)
 				}
 				Spacer(modifier = Modifier.width(8.dp))
 				Text(
-					text = "Hosts Editor",
+					text = stringResource(R.string.hosts_editor),
 					style = MaterialTheme.typography.titleLarge,
 					fontWeight = FontWeight.Black
 				)
@@ -93,7 +96,7 @@ fun HostsEditorScreen(
 						.padding(16.dp)
 				) {
 					Text(
-						text = "Add Block Rule",
+						text = stringResource(R.string.hosts_add_rule),
 						style = MaterialTheme.typography.titleMedium,
 						fontWeight = FontWeight.Black
 					)
@@ -109,7 +112,7 @@ fun HostsEditorScreen(
 							modifier = Modifier.weight(1f),
 							shape = ExpressiveLargeIncreased,
 							singleLine = true,
-							placeholder = { Text("domain.to.block") },
+							placeholder = { Text(stringResource(R.string.hosts_domain_placeholder)) },
 							colors = OutlinedTextFieldDefaults.colors(
 								focusedBorderColor = MaterialTheme.colorScheme.primary,
 								unfocusedBorderColor = MaterialTheme.colorScheme.outline,
@@ -132,7 +135,7 @@ fun HostsEditorScreen(
 							)
 							Spacer(modifier = Modifier.width(4.dp))
 							Text(
-								text = "Add",
+								text = stringResource(R.string.action_add),
 								style = MaterialTheme.typography.labelLarge,
 								fontWeight = FontWeight.Black
 							)
@@ -144,7 +147,7 @@ fun HostsEditorScreen(
 			Spacer(modifier = Modifier.height(16.dp))
 
 			Text(
-				text = "HOSTS CONTENT",
+				text = stringResource(R.string.hosts_content),
 				style = MaterialTheme.typography.labelMedium,
 				fontWeight = FontWeight.Black,
 				color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
@@ -190,7 +193,7 @@ fun HostsEditorScreen(
 				)
 				Spacer(modifier = Modifier.width(8.dp))
 				Text(
-					text = "Save Changes",
+					text = stringResource(R.string.hosts_save),
 					style = MaterialTheme.typography.labelLarge,
 					fontWeight = FontWeight.Black
 				)

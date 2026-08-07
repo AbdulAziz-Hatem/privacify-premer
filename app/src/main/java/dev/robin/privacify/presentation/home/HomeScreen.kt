@@ -1,5 +1,9 @@
 package dev.robin.privacify.presentation.home
 
+import androidx.compose.ui.res.stringResource
+import dev.robin.privacify.R
+import dev.robin.privacify.core.utils.AppContextProvider
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -85,9 +89,9 @@ fun HomeScreen() {
 			PrivacyScoreCard(
 				score = state.privacyScore,
 				statusText = when {
-					state.privacyScore >= 90 -> "Secure"
-					state.privacyScore >= 75 -> "Moderate"
-					else -> "At Risk"
+					state.privacyScore >= 90 -> stringResource(R.string.home_status_secure)
+					state.privacyScore >= 75 -> stringResource(R.string.home_status_moderate)
+					else -> stringResource(R.string.home_status_at_risk)
 				},
 				subtitle = state.statusSubtitle
 			)
@@ -235,7 +239,7 @@ private fun ProtectionSection(
 				verticalAlignment = Alignment.CenterVertically
 			) {
 				Text(
-					text = "PROTECTION",
+					text = stringResource(R.string.home_section_protection),
 					style = MaterialTheme.typography.labelMedium,
 					fontWeight = FontWeight.Bold,
 					color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
@@ -257,7 +261,7 @@ private fun ProtectionSection(
 			) {
 				SensorCard(
 					icon = Icons.Outlined.MicOff,
-					title = "Mic",
+					title = stringResource(R.string.sensor_mic),
 					active = micActive,
 					activeColor = RedVibrant,
 					onClick = { if (hasAccess) onMicToggle() }
@@ -265,7 +269,7 @@ private fun ProtectionSection(
 				Spacer(modifier = Modifier.width(10.dp))
 				SensorCard(
 					icon = Icons.Outlined.CameraAlt,
-					title = "Camera",
+					title = stringResource(R.string.sensor_camera),
 					active = cameraActive,
 					activeColor = OrangeVibrant,
 					onClick = { if (hasAccess) onCameraToggle() }
@@ -273,7 +277,7 @@ private fun ProtectionSection(
 				Spacer(modifier = Modifier.width(10.dp))
 				SensorCard(
 					icon = Icons.Outlined.LocationOn,
-					title = "Location",
+					title = stringResource(R.string.sensor_location),
 					active = locationActive,
 					activeColor = AmberVibrant,
 					onClick = { if (hasAccess) onLocationToggle() }
@@ -294,8 +298,8 @@ private fun LockdownRow(
 		modifier = Modifier
 			.fillMaxWidth()
 			.semantics {
-				contentDescription = "Lockdown Mode, ${if (isActive) "Active" else "Inactive"}"
-				stateDescription = if (isActive) "Active" else "Inactive"
+				contentDescription = AppContextProvider.context.getString(R.string.home_lockdown_content_desc, if (isActive) AppContextProvider.context.getString(R.string.state_active) else AppContextProvider.context.getString(R.string.state_inactive))
+				stateDescription = if (isActive) AppContextProvider.context.getString(R.string.state_active) else AppContextProvider.context.getString(R.string.state_inactive)
 			}
 			.clickable(enabled = hasAccess) { onToggle() },
 		shape = MaterialTheme.shapes.large,
@@ -320,16 +324,16 @@ private fun LockdownRow(
 			Spacer(modifier = Modifier.width(12.dp))
 			Column(modifier = Modifier.weight(1f)) {
 				Text(
-					text = "Lockdown Mode",
+					text = stringResource(R.string.home_lockdown_mode),
 					style = MaterialTheme.typography.titleSmall,
 					fontWeight = FontWeight.Bold,
 					color = if (isActive) Color.White else MaterialTheme.colorScheme.onSurface
 				)
 				Text(
 					text = when {
-						isActive -> "All sensors blocked · DND enabled"
-						hasAccess -> "Instantly block all sensors"
-						else -> "Requires ${if (shellType == "shizuku") "Shizuku" else "Root"} access"
+						isActive -> stringResource(R.string.lockdown_status_all_blocked)
+						hasAccess -> stringResource(R.string.lockdown_status_block)
+						else -> stringResource(R.string.lockdown_requires_access, if (shellType == "shizuku") stringResource(R.string.perm_shizuku) else stringResource(R.string.shell_root))
 					},
 					style = MaterialTheme.typography.bodySmall,
 					color = if (isActive) Color.White.copy(alpha = 0.8f)
@@ -373,7 +377,7 @@ private fun ScanNowButton(
 		)
 		Spacer(modifier = Modifier.width(6.dp))
 		Text(
-			text = "Scan Now",
+			text = stringResource(R.string.home_scan_now),
 			style = MaterialTheme.typography.labelLarge,
 			fontWeight = FontWeight.Bold
 		)
@@ -402,19 +406,19 @@ private fun QuickStatsCard(
 			StatItem(
 				icon = Icons.Outlined.Shield,
 				value = "$totalApps",
-				label = "Apps",
+				label = stringResource(R.string.home_stat_apps),
 				color = BlueVibrant
 			)
 			StatItem(
 				icon = Icons.Outlined.Shield,
 				value = "$totalPermissions",
-				label = "Permissions",
+				label = stringResource(R.string.home_stat_permissions),
 				color = OrangeVibrant
 			)
 			StatItem(
 				icon = Icons.Outlined.Warning,
 				value = "$highRiskCount",
-				label = "At Risk",
+				label = stringResource(R.string.home_status_at_risk),
 				color = if (highRiskCount > 0) RedVibrant else GreenVibrant
 			)
 		}

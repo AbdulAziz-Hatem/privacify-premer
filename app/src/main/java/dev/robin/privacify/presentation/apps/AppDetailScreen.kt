@@ -1,5 +1,9 @@
 package dev.robin.privacify.presentation.apps
 
+import androidx.compose.ui.res.stringResource
+import dev.robin.privacify.core.utils.AppContextProvider
+import dev.robin.privacify.R
+
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.widget.Toast
@@ -204,9 +208,9 @@ private fun Header(
 		Spacer(modifier = Modifier.height(8.dp))
 		PrivacifyBadge(
 			text = when (app.riskLevel) {
-				AppRiskLevel.High -> "High Risk App"
-				AppRiskLevel.Medium -> "Medium Risk App"
-				AppRiskLevel.Low -> "Low Risk App"
+				AppRiskLevel.High -> stringResource(R.string.risk_high_app)
+				AppRiskLevel.Medium -> stringResource(R.string.risk_medium_app)
+				AppRiskLevel.Low -> stringResource(R.string.risk_low_app)
 			},
 			color = riskColor
 		)
@@ -219,7 +223,7 @@ private fun ActivityInsights(
 ) {
 	Column(modifier = Modifier.fillMaxWidth()) {
 		Text(
-			text = "ACTIVITY INSIGHTS",
+			text = stringResource(R.string.detail_activity_insights),
 			style = MaterialTheme.typography.labelMedium,
 			fontWeight = FontWeight.Black,
 			color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
@@ -231,16 +235,16 @@ private fun ActivityInsights(
 		) {
 			InsightCard(
 				title = "${app.grantedCount}/${app.totalCount}",
-				subtitle = "Permissions Granted",
+				subtitle = stringResource(R.string.detail_permissions_granted),
 				modifier = Modifier.weight(1f)
 			)
 			InsightCard(
 				title = when (app.riskLevel) {
-					AppRiskLevel.High -> "Elevated"
-					AppRiskLevel.Medium -> "Moderate"
-					AppRiskLevel.Low -> "Low"
+					AppRiskLevel.High -> stringResource(R.string.risk_elevated)
+					AppRiskLevel.Medium -> stringResource(R.string.risk_moderate)
+					AppRiskLevel.Low -> stringResource(R.string.risk_low)
 				},
-				subtitle = "Risk Level",
+				subtitle = stringResource(R.string.detail_risk_level),
 				modifier = Modifier.weight(1f)
 			)
 		}
@@ -280,7 +284,7 @@ private fun PermissionsSection(
 ) {
 	Column(modifier = Modifier.fillMaxWidth()) {
 		Text(
-			text = "PERMISSIONS (${app.grantedCount} granted of ${app.totalCount})",
+			text = stringResource(R.string.detail_permissions_header, app.grantedCount, app.totalCount),
 			style = MaterialTheme.typography.labelMedium,
 			fontWeight = FontWeight.Black,
 			color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
@@ -296,7 +300,7 @@ private fun PermissionsSection(
 						contentAlignment = Alignment.Center
 					) {
 						Text(
-							text = "No sensitive permissions detected",
+							text = stringResource(R.string.detail_no_sensitive_permissions),
 							style = MaterialTheme.typography.bodySmall,
 							color = MaterialTheme.colorScheme.onSurfaceVariant
 						)
@@ -429,7 +433,7 @@ private fun PermissionRow(
 				.padding(horizontal = 12.dp, vertical = 6.dp)
 		) {
 			Text(
-				text = if (isGranted) "Granted" else "Denied",
+				text = if (isGranted) stringResource(R.string.state_granted) else stringResource(R.string.state_denied),
 				style = MaterialTheme.typography.labelSmall,
 				fontWeight = FontWeight.Bold,
 				color = if (isGranted) RedVibrant else GreenVibrant
@@ -450,8 +454,8 @@ private fun AdvancedControls(
 	if (showConfirmDialog) {
 		AlertDialog(
 			onDismissRequest = { showConfirmDialog = false },
-			title = { Text("Confirm Root Action", fontWeight = FontWeight.Black) },
-			text = { Text("This action requires root privileges and may affect system stability. Are you sure you want to $pendingAction?") },
+			title = { Text(stringResource(R.string.dialog_confirm_root_action), fontWeight = FontWeight.Black) },
+			text = { Text(stringResource(R.string.dialog_root_action_message, pendingAction)) },
 			confirmButton = {
 				TextButton(
 					onClick = {
@@ -459,12 +463,12 @@ private fun AdvancedControls(
 						onAction(pendingActionId)
 					}
 				) {
-					Text("Execute", color = RedVibrant, fontWeight = FontWeight.Black)
+					Text(stringResource(R.string.action_execute), color = RedVibrant, fontWeight = FontWeight.Black)
 				}
 			},
 			dismissButton = {
 				TextButton(onClick = { showConfirmDialog = false }) {
-					Text("Cancel")
+					Text(stringResource(R.string.action_cancel))
 				}
 			}
 		)
@@ -479,7 +483,7 @@ private fun AdvancedControls(
 			verticalAlignment = Alignment.CenterVertically
 		) {
 			Text(
-				text = "ADVANCED CONTROLS",
+				text = stringResource(R.string.detail_advanced_controls),
 				style = MaterialTheme.typography.labelMedium,
 				fontWeight = FontWeight.Black,
 				color = RedVibrant
@@ -495,7 +499,7 @@ private fun AdvancedControls(
 						.background(RedVibrant)
 				)
 				Text(
-					text = "ROOT ONLY",
+					text = stringResource(R.string.badge_root_only),
 					style = MaterialTheme.typography.labelSmall,
 					fontWeight = FontWeight.Black,
 					color = RedVibrant
@@ -508,33 +512,33 @@ private fun AdvancedControls(
 		) {
 			AdvancedActionCard(
 				icon = Icons.Outlined.Block,
-				title = "Force Revoke Permissions",
-				description = if (isRooted) "Bypass system restrictions" else "Requires root access",
+				title = stringResource(R.string.action_force_revoke_permissions),
+				description = if (isRooted) stringResource(R.string.action_force_revoke_desc_rooted) else stringResource(R.string.requires_root_access),
 				enabled = isRooted,
 				onClick = {
-					pendingAction = "force revoke permissions"
+					pendingAction = AppContextProvider.context.getString(R.string.action_force_revoke_pending)
 					pendingActionId = "revoke"
 					showConfirmDialog = true
 				}
 			)
 			AdvancedActionCard(
 				icon = Icons.Outlined.Dangerous,
-				title = "Freeze App State",
-				description = if (isRooted) "Suspend execution entirely" else "Requires root access",
+				title = stringResource(R.string.action_freeze_app),
+				description = if (isRooted) stringResource(R.string.action_freeze_app_desc_rooted) else stringResource(R.string.requires_root_access),
 				enabled = isRooted,
 				onClick = {
-					pendingAction = "freeze this app"
+					pendingAction = AppContextProvider.context.getString(R.string.action_freeze_pending)
 					pendingActionId = "freeze"
 					showConfirmDialog = true
 				}
 			)
 			AdvancedActionCard(
 				icon = Icons.Outlined.Sensors,
-				title = "Block Sensor Access",
-				description = if (isRooted) "Disable Gyro, GPS & Accel" else "Requires root access",
+				title = stringResource(R.string.action_block_sensors),
+				description = if (isRooted) stringResource(R.string.action_block_sensors_desc_rooted) else stringResource(R.string.requires_root_access),
 				enabled = isRooted,
 				onClick = {
-					pendingAction = "block sensor access"
+					pendingAction = AppContextProvider.context.getString(R.string.action_block_sensors_pending)
 					pendingActionId = "sensors"
 					showConfirmDialog = true
 				}
@@ -588,7 +592,7 @@ private fun AdvancedActionCard(
 				.padding(horizontal = 12.dp, vertical = 6.dp)
 		) {
 			Text(
-				text = "Action",
+				text = stringResource(R.string.detail_action),
 				style = MaterialTheme.typography.labelSmall,
 				fontWeight = FontWeight.Black,
 				color = RedVibrant

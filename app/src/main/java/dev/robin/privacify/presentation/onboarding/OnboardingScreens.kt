@@ -1,5 +1,8 @@
 package dev.robin.privacify.presentation.onboarding
 
+import androidx.compose.ui.res.stringResource
+import dev.robin.privacify.R
+
 import android.Manifest
 import android.content.Context
 import android.content.Intent
@@ -183,7 +186,7 @@ private fun StepNavigation(
 				),
 				border = ButtonDefaults.outlinedButtonBorder
 			) {
-				Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = "Back")
+				Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = stringResource(R.string.action_back))
 			}
 		}
 
@@ -216,7 +219,7 @@ private fun WelcomeStepContent(
 ) {
 	var scaled by remember { mutableStateOf(false) }
 	var expanded by remember { mutableStateOf(false) }
-	val languages = listOf("System", "English")
+	val languages = listOf(stringResource(R.string.onboarding_language_system), stringResource(R.string.onboarding_language_english), stringResource(R.string.onboarding_language_arabic))
 	var selectedLanguage by remember { mutableStateOf(languages[0]) }
 
 	Column(
@@ -248,7 +251,7 @@ private fun WelcomeStepContent(
 				Spacer(Modifier.height(32.dp))
 
 				Text(
-					text = "Welcome to\nPrivacify",
+					text = stringResource(R.string.onboarding_welcome),
 					style = MaterialTheme.typography.headlineLarge,
 					fontWeight = FontWeight(800),
 					color = MaterialTheme.colorScheme.onBackground,
@@ -258,7 +261,7 @@ private fun WelcomeStepContent(
 				Spacer(Modifier.height(8.dp))
 
 				Text(
-					text = "by Robin",
+					text = stringResource(R.string.onboarding_by),
 					style = MaterialTheme.typography.bodyLarge,
 					color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
 					textAlign = TextAlign.Center
@@ -322,7 +325,7 @@ private fun WelcomeStepContent(
 			)
 		) {
 			Text(
-				text = "Let's begin",
+				text = stringResource(R.string.onboarding_begin),
 				fontWeight = FontWeight.Black,
 				fontSize = 16.sp
 			)
@@ -349,7 +352,7 @@ private fun AcknowledgementStepContent(
 			Spacer(Modifier.height(24.dp))
 
 			Text(
-				text = "Privacy Disclaimer",
+				text = stringResource(R.string.onboarding_privacy_disclaimer),
 				style = MaterialTheme.typography.headlineLarge,
 				fontWeight = FontWeight(800),
 				color = MaterialTheme.colorScheme.onBackground
@@ -358,7 +361,7 @@ private fun AcknowledgementStepContent(
 			Spacer(Modifier.height(12.dp))
 
 			Text(
-				text = "Privacify requires certain permissions to monitor and block unauthorized access to your sensors and data.",
+				text = stringResource(R.string.onboarding_disclaimer_body),
 				style = MaterialTheme.typography.bodyLarge,
 				color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f)
 			)
@@ -372,16 +375,14 @@ private fun AcknowledgementStepContent(
 						.padding(16.dp)
 				) {
 					Text(
-						text = "What we need:",
+						text = stringResource(R.string.onboarding_what_we_need),
 						style = MaterialTheme.typography.titleMedium,
 						fontWeight = FontWeight.Bold,
 						color = MaterialTheme.colorScheme.onSurface
 					)
 					Spacer(Modifier.height(8.dp))
 					Text(
-						text = "• Usage Access — to detect which apps are currently active\n" +
-								"• Notifications — to alert you when sensors are accessed\n" +
-								"• Root/Shizuku — optional, for advanced system-level protection",
+						text = stringResource(R.string.onboarding_permissions_list),
 						style = MaterialTheme.typography.bodyMedium,
 						color = MaterialTheme.colorScheme.onSurfaceVariant
 					)
@@ -397,14 +398,14 @@ private fun AcknowledgementStepContent(
 						.padding(16.dp)
 				) {
 					Text(
-						text = "Your privacy matters:",
+						text = stringResource(R.string.onboarding_privacy_matters),
 						style = MaterialTheme.typography.titleMedium,
 						fontWeight = FontWeight.Bold,
 						color = MaterialTheme.colorScheme.onSurface
 					)
 					Spacer(Modifier.height(8.dp))
 					Text(
-						text = "We do not collect, store, or share any personal data. All monitoring happens locally on your device.",
+						text = stringResource(R.string.onboarding_privacy_statement),
 						style = MaterialTheme.typography.bodyMedium,
 						color = MaterialTheme.colorScheme.onSurfaceVariant
 					)
@@ -417,7 +418,7 @@ private fun AcknowledgementStepContent(
 		StepNavigation(
 			showBack = true,
 			onBack = onBack,
-			buttonText = "I understand",
+			buttonText = stringResource(R.string.onboarding_i_understand),
 			onContinue = onContinue
 		)
 	}
@@ -459,22 +460,18 @@ private fun SystemCheckStepContent(
 			onDismissRequest = { showRootGuide = false },
 			title = {
 				Text(
-					text = "Grant Root Access",
+					text = stringResource(R.string.onboarding_grant_root),
 					fontWeight = FontWeight.Bold
 				)
 			},
 			text = {
 				Text(
-					text = "Root access allows Privacify to directly control hardware sensors for maximum privacy protection.\n\n" +
-							"To grant root access:\n" +
-							"1. Install Magisk or KernelSU on your device\n" +
-							"2. Approve the root request when prompted\n" +
-							"3. Return here to verify"
+					text = stringResource(R.string.onboarding_root_body)
 				)
 			},
 			confirmButton = {
 				TextButton(onClick = { showRootGuide = false }) {
-					Text("Got it")
+					Text(stringResource(R.string.onboarding_got_it))
 				}
 			}
 		)
@@ -485,23 +482,18 @@ private fun SystemCheckStepContent(
 			onDismissRequest = { showShizukuGuide = false },
 			title = {
 				Text(
-					text = "Grant Shizuku Permission",
+					text = stringResource(R.string.onboarding_grant_shizuku),
 					fontWeight = FontWeight.Bold
 				)
 			},
 			text = {
 				Text(
-					text = "Shizuku allows Privacify to control system sensors without full root access.\n\n" +
-							"To set up Shizuku:\n" +
-							"1. Install Shizuku from Google Play\n" +
-							"2. Open Shizuku and start the service\n" +
-							"3. Grant permission to Privacify when prompted\n" +
-							"4. Return here to verify"
+					text = stringResource(R.string.onboarding_shizuku_body)
 				)
 			},
 			confirmButton = {
 				TextButton(onClick = { showShizukuGuide = false }) {
-					Text("Got it")
+					Text(stringResource(R.string.onboarding_got_it))
 				}
 			}
 		)
@@ -517,7 +509,7 @@ private fun SystemCheckStepContent(
 			Spacer(Modifier.height(24.dp))
 
 			Text(
-				text = "Required Access",
+				text = stringResource(R.string.onboarding_required_access),
 				style = MaterialTheme.typography.headlineLarge,
 				fontWeight = FontWeight(800),
 				color = MaterialTheme.colorScheme.onBackground
@@ -526,7 +518,7 @@ private fun SystemCheckStepContent(
 			Spacer(Modifier.height(12.dp))
 
 			Text(
-				text = "Grant the following permissions for full functionality.",
+				text = stringResource(R.string.onboarding_required_access_body),
 				style = MaterialTheme.typography.bodyLarge,
 				color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f)
 			)
@@ -541,8 +533,8 @@ private fun SystemCheckStepContent(
 			) {
 				PermissionToggleItem(
 					icon = Icons.Rounded.AdminPanelSettings,
-					title = "Usage Access",
-					subtitle = "Detect active apps to apply privacy rules",
+					title = stringResource(R.string.perm_usage_access),
+					subtitle = stringResource(R.string.perm_usage_access_desc),
 					checked = state.usageAccessGranted,
 					onClick = {
 						if (!state.usageAccessGranted) {
@@ -555,8 +547,8 @@ private fun SystemCheckStepContent(
 				if (Build.VERSION.SDK_INT >= 33) {
 					PermissionToggleItem(
 						icon = Icons.Rounded.Notifications,
-						title = "Notifications",
-						subtitle = "Get alerts when sensors are accessed",
+						title = stringResource(R.string.perm_notifications),
+						subtitle = stringResource(R.string.perm_notifications_desc),
 						checked = state.notificationPermissionGranted,
 						onClick = {
 							if (!state.notificationPermissionGranted) {
@@ -573,9 +565,9 @@ private fun SystemCheckStepContent(
 
 				PermissionToggleItem(
 					icon = Icons.Rounded.Shield,
-					title = "Root Access",
-					subtitle = if (state.rootGranted) "Root access granted"
-					           else "Requires Magisk or KernelSU",
+					title = stringResource(R.string.perm_root_access),
+					subtitle = if (state.rootGranted) stringResource(R.string.perm_root_granted)
+					           else stringResource(R.string.perm_root_requires),
 					checked = state.rootGranted,
 					isAdvanced = true,
 					onClick = {
@@ -587,9 +579,9 @@ private fun SystemCheckStepContent(
 
 				PermissionToggleItem(
 					icon = Icons.Rounded.AdminPanelSettings,
-					title = "Shizuku",
-					subtitle = if (state.shizukuGranted) "Shizuku permission granted"
-					           else "Grant Shizuku permission for system-level control",
+					title = stringResource(R.string.perm_shizuku),
+					subtitle = if (state.shizukuGranted) stringResource(R.string.perm_shizuku_granted)
+					           else stringResource(R.string.perm_shizuku_requires),
 					checked = state.shizukuGranted,
 					isAdvanced = true,
 					onClick = {
@@ -606,7 +598,7 @@ private fun SystemCheckStepContent(
 		StepNavigation(
 			showBack = true,
 			onBack = onBack,
-			buttonText = "All set",
+			buttonText = stringResource(R.string.onboarding_all_set),
 			onContinue = onContinue,
 			enabled = state.usageAccessGranted
 		)
@@ -648,7 +640,7 @@ private fun PermissionToggleItem(
 				)
 				if (isAdvanced) {
 					Spacer(Modifier.width(8.dp))
-					PrivacifyBadge(text = "ADVANCED", color = OrangeVibrant)
+					PrivacifyBadge(text = stringResource(R.string.badge_advanced), color = OrangeVibrant)
 				}
 			}
 			Spacer(Modifier.height(2.dp))
@@ -686,26 +678,26 @@ private fun FeatureIntroStepContent(
 ) {
 	val features = listOf(
 		FeatureItem(
-			title = "Monitor Sensors",
-			description = "Track mic, camera and location access in real-time.",
+			title = stringResource(R.string.feature_monitor_sensors),
+			description = stringResource(R.string.feature_monitor_sensors_desc),
 			icon = Icons.Rounded.VideocamOff,
 			color = PurpleVibrant
 		),
 		FeatureItem(
-			title = "Block Trackers",
-			description = "Restrict internet access and stop data tracking.",
+			title = stringResource(R.string.feature_block_trackers),
+			description = stringResource(R.string.feature_block_trackers_desc),
 			icon = Icons.Rounded.WifiOff,
 			color = BlueVibrant
 		),
 		FeatureItem(
-			title = "Lockdown Mode",
-			description = "One-tap system-wide sensor deactivation.",
+			title = stringResource(R.string.home_lockdown_mode),
+			description = stringResource(R.string.feature_lockdown_desc),
 			icon = Icons.Rounded.Lock,
 			color = RedVibrant
 		),
 		FeatureItem(
-			title = "Auto-Guard",
-			description = "Smart protection that adapts to your usage.",
+			title = stringResource(R.string.feature_auto_guard),
+			description = stringResource(R.string.feature_auto_guard_desc),
 			icon = Icons.Rounded.AutoAwesome,
 			color = AutoGuardPrimary
 		)
@@ -721,7 +713,7 @@ private fun FeatureIntroStepContent(
 			Spacer(Modifier.height(24.dp))
 
 			Text(
-				text = "Feature\nIntroduction",
+				text = stringResource(R.string.onboarding_feature_intro),
 				style = MaterialTheme.typography.headlineLarge,
 				fontWeight = FontWeight(800),
 				color = MaterialTheme.colorScheme.onBackground
@@ -730,7 +722,7 @@ private fun FeatureIntroStepContent(
 			Spacer(Modifier.height(12.dp))
 
 			Text(
-				text = "Protect your digital life with our comprehensive suite of privacy tools.",
+				text = stringResource(R.string.onboarding_protect_life),
 				style = MaterialTheme.typography.bodyLarge,
 				color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f)
 			)
@@ -777,7 +769,7 @@ private fun FeatureIntroStepContent(
 		StepNavigation(
 			showBack = true,
 			onBack = onBack,
-			buttonText = "Let me in",
+			buttonText = stringResource(R.string.onboarding_let_me_in),
 			onContinue = onContinue
 		)
 	}
