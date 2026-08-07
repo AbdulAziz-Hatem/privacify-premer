@@ -63,6 +63,8 @@ import dev.robin.privacify.ui.theme.MdSpacing
 import dev.robin.privacify.ui.theme.OrangeVibrant
 import dev.robin.privacify.ui.theme.RedVibrant
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.LiveRegionMode
 
 @Composable
 fun LockdownScreen(
@@ -306,13 +308,15 @@ private fun StatusBanner(active: Boolean) {
 				text = if (active) stringResource(R.string.lockdown_all_sensors_disabled) else stringResource(R.string.lockdown_standard_mode),
 				style = MaterialTheme.typography.titleSmall,
 				fontWeight = FontWeight.Black,
-				color = if (active) GreenVibrant else MaterialTheme.colorScheme.onSurface
+				color = if (active) GreenVibrant else MaterialTheme.colorScheme.onSurface,
+				modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite }
 			)
 			Text(
 				text = if (active) stringResource(R.string.lockdown_active_message)
 				else stringResource(R.string.lockdown_standard_message),
 				style = MaterialTheme.typography.bodySmall,
-				color = MaterialTheme.colorScheme.onSurfaceVariant
+				color = MaterialTheme.colorScheme.onSurfaceVariant,
+				modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite }
 			)
 		}
 	}
