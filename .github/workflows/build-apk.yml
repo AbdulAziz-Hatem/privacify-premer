@@ -95,6 +95,6 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: app/build/outputs/apk/release/Privacify-signed.apk
-          generate_release_notes: true
+          body_path: fastlane/metadata/android/en-US/changelogs/27.txt
           draft: false
           prerelease: false
