@@ -9,6 +9,7 @@ import dev.robin.privacify.core.security.PrivacyControllersProvider
 import dev.robin.privacify.core.theme.AppThemeMode
 import dev.robin.privacify.core.theme.ThemePreferenceManager
 import dev.robin.privacify.pro.utils.ShellUtils
+import dev.robin.privacify.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -61,7 +62,7 @@ class SettingsViewModel(
 
 				SettingsUiState(
 					notificationsEnabled = notify,
-					scanFrequencyLabel = freq,
+					scanFrequencyLabel = scanFrequencyToLabel(freq),
 					themeLabel = themeModeToLabel(theme),
 					automationEnabled = automation,
 					autostartEnabled = autostart,
@@ -102,7 +103,7 @@ class SettingsViewModel(
 	}
 
 	fun onScanFrequencyClicked() {
-		val next = when (state.value.scanFrequencyLabel) {
+		val next = when (prefs.scanFrequency.value) {
 			"Daily" -> "Weekly"
 			"Weekly" -> "Manual"
 			else -> "Daily"
@@ -193,15 +194,21 @@ class SettingsViewModel(
 	}
 
 	private fun themeModeToLabel(mode: AppThemeMode): String = when (mode) {
-		AppThemeMode.Dark -> "Dark Mode"
-		AppThemeMode.System -> "System Default"
-		AppThemeMode.Light -> "Light Mode"
+		AppThemeMode.Dark -> appContext.getString(R.string.theme_dark_mode)
+		AppThemeMode.System -> appContext.getString(R.string.theme_system_default)
+		AppThemeMode.Light -> appContext.getString(R.string.theme_light_mode)
+	}
+
+	private fun scanFrequencyToLabel(freq: String): String = when (freq) {
+		"Weekly" -> appContext.getString(R.string.scan_frequency_weekly)
+		"Manual" -> appContext.getString(R.string.scan_frequency_manual)
+		else -> appContext.getString(R.string.scan_frequency_daily)
 	}
 
 	private fun shellTypeToLabel(type: String): String = when (type) {
-		"root" -> "Root"
-		"shizuku" -> "Shizuku"
-		else -> "Auto"
+		"root" -> appContext.getString(R.string.shell_root)
+		"shizuku" -> appContext.getString(R.string.shell_shizuku)
+		else -> appContext.getString(R.string.shell_auto)
 	}
 
 	companion object {
