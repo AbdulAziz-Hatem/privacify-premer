@@ -1,10 +1,266 @@
 <resources>
+	<!-- App -->
 	<string name="app_name">Privacify</string>
+
+	<!-- Navigation -->
 	<string name="nav_home">Home</string>
 	<string name="nav_apps">Apps</string>
 	<string name="nav_analytics">Analytics</string>
 	<string name="nav_settings">Settings</string>
+
+	<!-- Quick settings tile & widgets -->
 	<string name="tile_lockdown_label">Lockdown</string>
 	<string name="widget_lockdown_description">Toggle lockdown mode</string>
 	<string name="widget_privacy_controls_description">Toggle mic, camera, and location blocking</string>
+
+	<!-- Common -->
+	<string name="action_back">Back</string>
+	<string name="action_cancel">Cancel</string>
+	<string name="action_clear">Clear</string>
+	<string name="action_add">Add</string>
+	<string name="action_execute">Execute</string>
+	<string name="action_view_all">View all</string>
+	<string name="action_add_app">Add app</string>
+	<string name="state_active">Active</string>
+	<string name="state_inactive">Inactive</string>
+	<string name="state_granted">Granted</string>
+	<string name="state_denied">Denied</string>
+	<string name="time_running">Running</string>
+	<string name="time_now">now</string>
+	<string name="time_today">Today</string>
+	<string name="time_yesterday">Yesterday</string>
+
+	<!-- Sensors & permissions -->
+	<string name="perm_location">Location</string>
+	<string name="perm_camera">Camera</string>
+	<string name="perm_microphone">Microphone</string>
+	<string name="perm_contacts">Contacts</string>
+	<string name="perm_sms_phone">SMS/Phone</string>
+	<string name="perm_usage_access">Usage Access</string>
+	<string name="perm_usage_access_desc">Detect active apps to apply privacy rules</string>
+	<string name="perm_notifications">Notifications</string>
+	<string name="perm_notifications_desc">Get alerts when sensors are accessed</string>
+	<string name="perm_root_access">Root Access</string>
+	<string name="perm_root_granted">Root access granted</string>
+	<string name="perm_root_requires">Requires Magisk or KernelSU</string>
+	<string name="perm_shizuku">Shizuku</string>
+	<string name="perm_shizuku_granted">Shizuku permission granted</string>
+	<string name="perm_shizuku_requires">Grant Shizuku permission for system-level control</string>
+	<string name="sensor_mic">Mic</string>
+	<string name="sensor_camera">Camera</string>
+	<string name="sensor_location">Location</string>
+
+	<!-- Risk levels & filters -->
+	<string name="risk_high">High</string>
+	<string name="risk_medium">Medium</string>
+	<string name="risk_low">Low</string>
+	<string name="risk_high_app">High Risk App</string>
+	<string name="risk_medium_app">Medium Risk App</string>
+	<string name="risk_low_app">Low Risk App</string>
+	<string name="risk_elevated">Elevated</string>
+	<string name="risk_moderate">Moderate</string>
+	<string name="filter_all">All</string>
+	<string name="filter_high_risk">High Risk</string>
+	<string name="filter_medium_risk">Medium Risk</string>
+	<string name="filter_safe">Safe</string>
+
+	<!-- Analytics -->
+	<string name="analytics_title">Privacy Analytics</string>
+	<string name="analytics_grants_summary">%1$s grants across %2$s apps</string>
+	<string name="analytics_apps_count">%1$s apps</string>
+	<plurals name="analytics_apps_list_count">
+		<item quantity="one">%d app</item>
+		<item quantity="other">%d apps</item>
+	</plurals>
+	<string name="analytics_permission_distribution">Permission Distribution</string>
+	<string name="analytics_risk_breakdown">Risk Breakdown</string>
+	<string name="analytics_grants_total">%1$s total permission grants across %2$s apps</string>
+	<string name="analytics_high_risk_apps">High Risk Apps</string>
+	<string name="analytics_no_high_risk">No high risk apps detected</string>
+	<string name="analytics_sensor_history">Sensor Usage History</string>
+	<string name="analytics_no_sensor_data">No sensor usage recorded yet.\nEnable Auto-Guard to start tracking.</string>
+	<string name="analytics_more_sessions">+ %1$s more — tap to view all</string>
+	<string name="analytics_event_duration">· %1$s</string>
+	<string name="analytics_session_line">%1$s: %2$s - %3$s</string>
+	<string name="badge_high">HIGH</string>
+
+	<!-- App detail -->
+	<string name="detail_activity_insights">ACTIVITY INSIGHTS</string>
+	<string name="detail_permissions_granted">Permissions Granted</string>
+	<string name="detail_risk_level">Risk Level</string>
+	<string name="detail_permissions_header">PERMISSIONS (%1$s granted of %2$s)</string>
+	<string name="detail_no_sensitive_permissions">No sensitive permissions detected</string>
+	<string name="detail_advanced_controls">ADVANCED CONTROLS</string>
+	<string name="detail_action">Action</string>
+	<string name="dialog_confirm_root_action">Confirm Root Action</string>
+	<string name="dialog_root_action_message">This action requires root privileges and may affect system stability. Are you sure you want to %1$s?</string>
+	<string name="badge_root_only">ROOT ONLY</string>
+	<string name="action_force_revoke_permissions">Force Revoke Permissions</string>
+	<string name="action_force_revoke_desc_rooted">Bypass system restrictions</string>
+	<string name="action_freeze_app">Freeze App State</string>
+	<string name="action_freeze_app_desc_rooted">Suspend execution entirely</string>
+	<string name="action_block_sensors">Block Sensor Access</string>
+	<string name="action_block_sensors_desc_rooted">Disable Gyro, GPS &amp; Accel</string>
+	<string name="requires_root_access">Requires root access</string>
+
+	<!-- Apps screen -->
+	<string name="apps_permission_scanner">Permission Scanner</string>
+	<string name="apps_count">%1$s apps</string>
+	<string name="apps_search_hint">Search apps or permissions</string>
+
+	<!-- Dashboard / Home -->
+	<string name="status_scanning">Scanning system...</string>
+	<string name="status_scan_complete">Scan complete. Dashboard is up to date.</string>
+	<string name="score_status_verified">System integrity verified. No unauthorized access detected.</string>
+	<string name="score_status_moderate">Moderate risk detected. Review high permission apps.</string>
+	<string name="score_status_high">High risk detected. Lockdown recommended.</string>
+	<string name="home_status_secure">Secure</string>
+	<string name="home_status_moderate">Moderate</string>
+	<string name="home_status_at_risk">At Risk</string>
+	<string name="home_section_protection">PROTECTION</string>
+	<string name="home_lockdown_content_desc">Lockdown Mode, %1$s</string>
+	<string name="home_lockdown_mode">Lockdown Mode</string>
+	<string name="lockdown_status_all_blocked">All sensors blocked · DND enabled</string>
+	<string name="lockdown_status_block">Instantly block all sensors</string>
+	<string name="lockdown_requires_access">Requires %1$s access</string>
+	<string name="home_scan_now">Scan Now</string>
+	<string name="home_stat_apps">Apps</string>
+	<string name="home_stat_permissions">Permissions</string>
+
+	<!-- Lockdown -->
+	<string name="lockdown_sensor_controls">SENSOR CONTROLS</string>
+	<string name="lockdown_important_cd">Important: Lockdown mode will disable active communications. Emergency calls may be affected.</string>
+	<string name="lockdown_important_title">Important</string>
+	<string name="lockdown_important_message">Lockdown mode will disable active communications. Emergency calls may be affected. Use with caution.</string>
+	<string name="lockdown_deactivate_cd">Deactivate lockdown</string>
+	<string name="lockdown_activate_cd">Activate lockdown mode</string>
+	<string name="lockdown_activated">ACTIVE</string>
+	<string name="lockdown_button">LOCKDOWN</string>
+	<string name="lockdown_tap_deactivate">Tap to deactivate lockdown</string>
+	<string name="lockdown_tap_activate">Tap to activate lockdown mode</string>
+	<string name="lockdown_active_cd">Lockdown active: all sensors disabled</string>
+	<string name="lockdown_standard_cd">Standard mode: privacy controls at normal levels</string>
+	<string name="lockdown_all_sensors_disabled">All sensors disabled</string>
+	<string name="lockdown_standard_mode">Standard mode</string>
+	<string name="lockdown_active_message">Lockdown is active — device is secured</string>
+	<string name="lockdown_standard_message">Privacy controls are at normal levels</string>
+
+	<!-- Onboarding -->
+	<string name="onboarding_language_system">System</string>
+	<string name="onboarding_language_english">English</string>
+	<string name="onboarding_language_arabic">العربية</string>
+	<string name="onboarding_welcome">Welcome to\nPrivacify</string>
+	<string name="onboarding_by">by Robin</string>
+	<string name="onboarding_begin">Let\'s begin</string>
+	<string name="onboarding_privacy_disclaimer">Privacy Disclaimer</string>
+	<string name="onboarding_disclaimer_body">Privacify requires certain permissions to monitor and block unauthorized access to your sensors and data.</string>
+	<string name="onboarding_what_we_need">What we need:</string>
+	<string name="onboarding_permissions_list">• Usage Access — to detect which apps are currently active\n• Notifications — to alert you when sensors are accessed\n• Root/Shizuku — optional, for advanced system-level protection</string>
+	<string name="onboarding_privacy_matters">Your privacy matters:</string>
+	<string name="onboarding_privacy_statement">We do not collect, store, or share any personal data. All monitoring happens locally on your device.</string>
+	<string name="onboarding_i_understand">I understand</string>
+	<string name="onboarding_grant_root">Grant Root Access</string>
+	<string name="onboarding_root_body">Root access allows Privacify to directly control hardware sensors for maximum privacy protection.\n\nTo grant root access:\n1. Install Magisk or KernelSU on your device\n2. Approve the root request when prompted\n3. Return here to verify</string>
+	<string name="onboarding_got_it">Got it</string>
+	<string name="onboarding_grant_shizuku">Grant Shizuku Permission</string>
+	<string name="onboarding_shizuku_body">Shizuku allows Privacify to control system sensors without full root access.\n\nTo set up Shizuku:\n1. Install Shizuku from Google Play\n2. Open Shizuku and start the service\n3. Grant permission to Privacify when prompted\n4. Return here to verify</string>
+	<string name="onboarding_required_access">Required Access</string>
+	<string name="onboarding_required_access_body">Grant the following permissions for full functionality.</string>
+	<string name="onboarding_all_set">All set</string>
+	<string name="badge_advanced">ADVANCED</string>
+	<string name="feature_monitor_sensors">Monitor Sensors</string>
+	<string name="feature_monitor_sensors_desc">Track mic, camera and location access in real-time.</string>
+	<string name="feature_block_trackers">Block Trackers</string>
+	<string name="feature_block_trackers_desc">Restrict internet access and stop data tracking.</string>
+	<string name="feature_lockdown_desc">One-tap system-wide sensor deactivation.</string>
+	<string name="feature_auto_guard">Auto-Guard</string>
+	<string name="feature_auto_guard_desc">Smart protection that adapts to your usage.</string>
+	<string name="onboarding_feature_intro">Feature\nIntroduction</string>
+	<string name="onboarding_protect_life">Protect your digital life with our comprehensive suite of privacy tools.</string>
+	<string name="onboarding_let_me_in">Let me in</string>
+
+	<!-- Sensor log -->
+	<string name="sensorlog_pro_required">Upgrade to Pro to view sensor usage history.</string>
+	<string name="sensorlog_empty">No sensor usage recorded yet</string>
+	<string name="sensorlog_empty_body">Sensor usage logs will appear here\nafter Auto-Guard detects activity.</string>
+	<string name="sensorlog_clear_history_cd">Clear history</string>
+	<string name="sensorlog_clear_title">Clear History?</string>
+	<string name="sensorlog_clear_message">This will permanently delete all sensor usage logs.</string>
+	<string name="sensorlog_access">%1$s access</string>
+	<string name="sensorlog_started">Started</string>
+	<string name="sensorlog_stopped">Stopped</string>
+	<string name="sensorlog_active">Active</string>
+
+	<!-- Exemptions -->
+	<string name="exemptions_title">Exempted Apps</string>
+	<string name="exemptions_empty">No exemptions</string>
+	<string name="exemptions_hint">Tap + to add apps exempt from\n%1$s blocking</string>
+	<string name="exemptions_remove_cd">Remove exemption</string>
+	<string name="exemptions_add_app_title">Add App</string>
+	<string name="exemptions_search_hint">Search apps...</string>
+	<string name="exemptions_no_apps">No apps found</string>
+
+	<!-- Hosts editor -->
+	<string name="hosts_editor">Hosts Editor</string>
+	<string name="hosts_add_rule">Add Block Rule</string>
+	<string name="hosts_domain_placeholder">domain.to.block</string>
+	<string name="hosts_content">HOSTS CONTENT</string>
+	<string name="hosts_save">Save Changes</string>
+
+	<!-- Settings -->
+	<string name="settings_section_protection">PROTECTION</string>
+	<string name="badge_featured">FEATURED</string>
+	<string name="settings_mic_subtitle">Block mic when apps are listening</string>
+	<string name="settings_camera_subtitle">Block camera when apps are recording</string>
+	<string name="settings_location_subtitle">Block location when apps are tracking</string>
+	<string name="settings_face_unlock">Face Unlock</string>
+	<string name="settings_face_unlock_subtitle">Unblock camera briefly when screen turns on for face unlock</string>
+	<string name="settings_toast_notifications">Toast Notifications</string>
+	<string name="settings_toast_subtitle">Show toast when sensors are blocked or unblocked</string>
+	<string name="settings_exempted_subtitle">Apps that bypass Auto Guard sensor blocking</string>
+	<string name="settings_autostart">App Autostart</string>
+	<string name="settings_autostart_subtitle">Automatically start at boot</string>
+	<string name="settings_autostart_desc">Automatically start the app at boot for persistent protection.</string>
+	<string name="settings_section_general">General</string>
+	<string name="settings_notifications_subtitle">Receive alerts when sensors are accessed</string>
+	<string name="settings_scan_frequency">Scan Frequency</string>
+	<string name="settings_theme">App Theme</string>
+	<string name="shell_auto">Auto</string>
+	<string name="shell_root">Root</string>
+	<string name="shell_shizuku">Shizuku</string>
+	<string name="settings_section_advanced">ADVANCED</string>
+	<string name="settings_root_status">Root</string>
+	<string name="settings_no_root">No Root</string>
+	<string name="settings_shizuku_status">Shizuku</string>
+	<string name="settings_root_shizuku_chip">Root/Shizuku</string>
+	<string name="settings_shell_type">Shell Type</string>
+	<string name="settings_active">Active: %1$s</string>
+	<string name="settings_requires_privileges">Root or Shizuku privileges required for advanced features.</string>
+	<string name="settings_battery_optimization">Battery Optimization</string>
+	<string name="settings_battery_unrestricted">Already unrestricted</string>
+	<string name="settings_battery_disable">Disable for reliable background operation</string>
+	<string name="settings_section_about">About</string>
+	<string name="settings_open_source">Open Source</string>
+	<string name="settings_open_source_subtitle">View source on GitHub</string>
+	<string name="settings_check_updates">Check for Updates</string>
+	<string name="settings_check_updates_subtitle">Check for new version on Patreon</string>
+	<string name="settings_version">Version</string>
+	<string name="settings_auto_update">Automatic Update Check</string>
+	<string name="settings_auto_update_desc">Get the latest Privacify Pro version directly from Patreon with one tap.</string>
+	<string name="settings_control_center">Privacify Control Center</string>
+
+	<!-- Design system -->
+	<string name="ds_blocked">Blocked</string>
+	<string name="ds_monitoring">Monitoring</string>
+	<string name="ds_sensor_desc">%1$s, %2$s</string>
+	<string name="ds_auto_guard_enabled_desc">Monitors sensors &amp; pauses kill switches when in use</string>
+	<string name="ds_auto_guard_desc">Intelligent sensor protection</string>
+	<string name="ds_auto_guard_feature_desc">Automatically manage kill switches when sensors are in use.</string>
+	<string name="ds_pro_feature">Pro Feature</string>
+	<string name="ds_pro_unlock">Upgrade to Pro to unlock this and other premium features.</string>
+	<string name="ds_support_patreon">Support on Patreon</string>
+	<string name="ds_maybe_later">Maybe Later</string>
+	<string name="action_force_revoke_pending">force revoke permissions</string>
+	<string name="action_freeze_pending">freeze this app</string>
+	<string name="action_block_sensors_pending">block sensor access</string>
 </resources>

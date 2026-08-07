@@ -1,5 +1,8 @@
 package dev.robin.privacify.presentation.analytics
 
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.pluralStringResource
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -104,19 +107,19 @@ private fun Header(
 	) {
 		Column {
 			Text(
-				text = "Privacy Analytics",
+				text = stringResource(R.string.analytics_title),
 				style = MaterialTheme.typography.titleLarge,
 				fontWeight = FontWeight.Black
 			)
 			Spacer(modifier = Modifier.height(2.dp))
 			Text(
-				text = "$totalGrants grants across $totalApps apps",
+				text = stringResource(R.string.analytics_grants_summary, totalGrants, totalApps),
 				style = MaterialTheme.typography.bodySmall,
 				color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
 			)
 		}
 		PrivacifyBadge(
-			text = "$totalApps apps",
+			text = stringResource(R.string.analytics_apps_count, totalApps),
 			color = MaterialTheme.colorScheme.primary
 		)
 	}
@@ -134,17 +137,17 @@ private fun PermissionDistributionCard(
 			verticalArrangement = Arrangement.spacedBy(12.dp)
 		) {
 			Text(
-				text = "Permission Distribution",
+				text = stringResource(R.string.analytics_permission_distribution),
 				style = MaterialTheme.typography.titleMedium,
 				fontWeight = FontWeight.Black
 			)
 			Spacer(modifier = Modifier.height(4.dp))
 			val maxCount = maxOf(state.locationAppCount, state.cameraAppCount, state.micAppCount, state.contactsAppCount, state.smsAppCount, 1)
-			PermissionBar(label = "Location", count = state.locationAppCount, color = BlueVibrant, maxCount = maxCount)
-			PermissionBar(label = "Camera", count = state.cameraAppCount, color = GreenVibrant, maxCount = maxCount)
-			PermissionBar(label = "Microphone", count = state.micAppCount, color = RedVibrant, maxCount = maxCount)
-			PermissionBar(label = "Contacts", count = state.contactsAppCount, color = OrangeVibrant, maxCount = maxCount)
-			PermissionBar(label = "SMS/Phone", count = state.smsAppCount, color = PurpleVibrant, maxCount = maxCount)
+			PermissionBar(label = stringResource(R.string.perm_location), count = state.locationAppCount, color = BlueVibrant, maxCount = maxCount)
+			PermissionBar(label = stringResource(R.string.perm_camera), count = state.cameraAppCount, color = GreenVibrant, maxCount = maxCount)
+			PermissionBar(label = stringResource(R.string.perm_microphone), count = state.micAppCount, color = RedVibrant, maxCount = maxCount)
+			PermissionBar(label = stringResource(R.string.perm_contacts), count = state.contactsAppCount, color = OrangeVibrant, maxCount = maxCount)
+			PermissionBar(label = stringResource(R.string.perm_sms_phone), count = state.smsAppCount, color = PurpleVibrant, maxCount = maxCount)
 		}
 	}
 }
@@ -167,7 +170,7 @@ private fun PermissionBar(
 				fontWeight = FontWeight.SemiBold
 			)
 			Text(
-				text = "$count app${if (count != 1) "s" else ""}",
+				text = pluralStringResource(R.plurals.analytics_apps_list_count, count, count),
 				style = MaterialTheme.typography.bodyMedium,
 				fontWeight = FontWeight.Black,
 				color = color
@@ -207,7 +210,7 @@ private fun RiskBreakdownCard(
 			verticalArrangement = Arrangement.spacedBy(12.dp)
 		) {
 			Text(
-				text = "Risk Breakdown",
+				text = stringResource(R.string.analytics_risk_breakdown),
 				style = MaterialTheme.typography.titleMedium,
 				fontWeight = FontWeight.Black
 			)
@@ -215,12 +218,12 @@ private fun RiskBreakdownCard(
 				modifier = Modifier.fillMaxWidth(),
 				horizontalArrangement = Arrangement.SpaceEvenly
 			) {
-				RiskBadge(label = "High", count = state.highRiskCount, color = RedVibrant)
-				RiskBadge(label = "Medium", count = state.mediumRiskCount, color = OrangeVibrant)
-				RiskBadge(label = "Low", count = state.lowRiskCount, color = GreenVibrant)
+				RiskBadge(label = stringResource(R.string.risk_high), count = state.highRiskCount, color = RedVibrant)
+				RiskBadge(label = stringResource(R.string.risk_medium), count = state.mediumRiskCount, color = OrangeVibrant)
+				RiskBadge(label = stringResource(R.string.risk_low), count = state.lowRiskCount, color = GreenVibrant)
 			}
 			Text(
-				text = "${state.totalPermissionGrants} total permission grants across ${state.totalApps} apps",
+				text = stringResource(R.string.analytics_grants_total, state.totalPermissionGrants, state.totalApps),
 				style = MaterialTheme.typography.bodySmall,
 				color = MaterialTheme.colorScheme.onSurfaceVariant
 			)
@@ -269,7 +272,7 @@ private fun HighRiskAppsCard(
 				verticalAlignment = Alignment.CenterVertically
 			) {
 				Text(
-					text = "High Risk Apps",
+					text = stringResource(R.string.analytics_high_risk_apps),
 					style = MaterialTheme.typography.titleMedium,
 					fontWeight = FontWeight.Black
 				)
@@ -282,7 +285,7 @@ private fun HighRiskAppsCard(
 					contentAlignment = Alignment.Center
 				) {
 					Text(
-						text = "No high risk apps detected",
+						text = stringResource(R.string.analytics_no_high_risk),
 						style = MaterialTheme.typography.bodySmall,
 						color = MaterialTheme.colorScheme.onSurfaceVariant
 					)
@@ -337,7 +340,7 @@ private fun HighRiskRow(
 					style = MaterialTheme.typography.bodyMedium,
 					fontWeight = FontWeight.Bold
 				)
-				PrivacifyBadge(text = "HIGH", color = RedVibrant)
+				PrivacifyBadge(text = stringResource(R.string.badge_high), color = RedVibrant)
 			}
 			Spacer(modifier = Modifier.height(2.dp))
 			Text(
@@ -378,14 +381,14 @@ private fun SensorHistoryCard(
 				)
 				Spacer(modifier = Modifier.width(8.dp))
 				Text(
-					text = "Sensor Usage History",
+					text = stringResource(R.string.analytics_sensor_history),
 					style = MaterialTheme.typography.titleMedium,
 					fontWeight = FontWeight.Black,
 					modifier = Modifier.weight(1f)
 				)
 				Icon(
 					imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-					contentDescription = "View all",
+					contentDescription = stringResource(R.string.action_view_all),
 					tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
 					modifier = Modifier.size(20.dp)
 				)
@@ -393,7 +396,7 @@ private fun SensorHistoryCard(
 
 			if (events.isEmpty()) {
 				Text(
-					text = "No sensor usage recorded yet.\nEnable Auto-Guard to start tracking.",
+					text = stringResource(R.string.analytics_no_sensor_data),
 					style = MaterialTheme.typography.bodySmall,
 					color = MaterialTheme.colorScheme.onSurfaceVariant,
 					textAlign = TextAlign.Start,
@@ -406,7 +409,7 @@ private fun SensorHistoryCard(
 				}
 				if (events.size / 2 > 3) {
 					Text(
-						text = "+ ${events.size / 2 - 3} more — tap to view all",
+						text = stringResource(R.string.analytics_more_sessions, events.size / 2 - 3),
 						style = MaterialTheme.typography.labelSmall,
 						fontWeight = FontWeight.Bold,
 						color = MaterialTheme.colorScheme.primary,
@@ -434,15 +437,15 @@ private fun MiniTimelineRow(session: MiniSession) {
 		else -> MaterialTheme.colorScheme.primary
 	}
 	val label = when (session.type) {
-		SensorEvent.TYPE_MIC -> "Mic"
-		SensorEvent.TYPE_CAMERA -> "Camera"
-		SensorEvent.TYPE_LOCATION -> "Location"
+		SensorEvent.TYPE_MIC -> stringResource(R.string.sensor_mic)
+		SensorEvent.TYPE_CAMERA -> stringResource(R.string.sensor_camera)
+		SensorEvent.TYPE_LOCATION -> stringResource(R.string.sensor_location)
 		else -> session.type
 	}
 	val durationText = if (session.stopTime != null) {
 		val sec = (session.stopTime - session.startTime) / 1000
 		if (sec < 60) "${sec}s" else "${sec / 60}m ${sec % 60}s"
-	} else "Running"
+	} else stringResource(R.string.time_running)
 
 	val pkg = session.appPackage
 	val appInfo = remember(pkg) {
@@ -506,13 +509,13 @@ private fun MiniTimelineRow(session: MiniSession) {
 				)
 				Spacer(modifier = Modifier.width(6.dp))
 				Text(
-					text = "· $durationText",
+					text = stringResource(R.string.analytics_event_duration, durationText),
 					style = MaterialTheme.typography.labelSmall,
 					color = MaterialTheme.colorScheme.onSurfaceVariant
 				)
 			}
 			Text(
-				text = "$label: ${miniTimeFormat.format(Date(session.startTime))} - ${if (session.stopTime != null) miniTimeFormat.format(Date(session.stopTime)) else "now"}",
+				text = stringResource(R.string.analytics_session_line, label, miniTimeFormat.format(Date(session.startTime)), if (session.stopTime != null) miniTimeFormat.format(Date(session.stopTime)) else stringResource(R.string.time_now)),
 				style = MaterialTheme.typography.labelSmall,
 				color = MaterialTheme.colorScheme.onSurfaceVariant
 			)

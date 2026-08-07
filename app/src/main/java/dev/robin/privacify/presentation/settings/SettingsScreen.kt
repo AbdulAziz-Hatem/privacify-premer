@@ -1,5 +1,7 @@
 package dev.robin.privacify.presentation.settings
 
+import androidx.compose.ui.res.stringResource
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -108,7 +110,7 @@ fun SettingsScreen(onNavigateToExemptions: () -> Unit = {}) {
 			Spacer(modifier = Modifier.height(8.dp))
 
 			Text(
-				text = "Settings",
+				text = stringResource(R.string.nav_settings),
 				style = MaterialTheme.typography.headlineLarge,
 				fontWeight = FontWeight.Black,
 				modifier = Modifier.padding(horizontal = 4.dp)
@@ -169,12 +171,12 @@ private fun ProtectionSection(
 			verticalAlignment = Alignment.CenterVertically
 		) {
 			Text(
-				text = "PROTECTION",
+				text = stringResource(R.string.settings_section_protection),
 				style = MaterialTheme.typography.labelMedium,
 				fontWeight = FontWeight.Black,
 				color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
 			)
-			PrivacifyBadge(text = "FEATURED", color = AutoGuardPrimary)
+			PrivacifyBadge(text = stringResource(R.string.badge_featured), color = AutoGuardPrimary)
 		}
 		PrivacifyAutoGuardCard(
 			enabled = enabled,
@@ -184,8 +186,8 @@ private fun ProtectionSection(
 			PrivacifyExpressiveCard {
 				Column {
 					SettingsRow(
-						title = "Microphone",
-						subtitle = "Block mic when apps are listening",
+						title = stringResource(R.string.perm_microphone),
+						subtitle = stringResource(R.string.settings_mic_subtitle),
 						icon = Icons.Outlined.Mic,
 						iconTint = MaterialTheme.colorScheme.error,
 						iconBackground = MaterialTheme.colorScheme.error.copy(alpha = 0.12f),
@@ -201,8 +203,8 @@ private fun ProtectionSection(
 					)
 					PrivacifyDivider()
 					SettingsRow(
-						title = "Camera",
-						subtitle = "Block camera when apps are recording",
+						title = stringResource(R.string.perm_camera),
+						subtitle = stringResource(R.string.settings_camera_subtitle),
 						icon = Icons.Outlined.Videocam,
 						iconTint = MaterialTheme.colorScheme.primary,
 						iconBackground = MaterialTheme.colorScheme.primary.copy(alpha = 0.12f),
@@ -218,8 +220,8 @@ private fun ProtectionSection(
 					)
 					PrivacifyDivider()
 					SettingsRow(
-						title = "Location",
-						subtitle = "Block location when apps are tracking",
+						title = stringResource(R.string.perm_location),
+						subtitle = stringResource(R.string.settings_location_subtitle),
 						icon = Icons.Outlined.LocationOn,
 						iconTint = MaterialTheme.colorScheme.tertiary,
 						iconBackground = MaterialTheme.colorScheme.tertiary.copy(alpha = 0.12f),
@@ -235,8 +237,8 @@ private fun ProtectionSection(
 					)
 					PrivacifyDivider()
 					SettingsRow(
-						title = "Face Unlock",
-						subtitle = "Unblock camera briefly when screen turns on for face unlock",
+						title = stringResource(R.string.settings_face_unlock),
+						subtitle = stringResource(R.string.settings_face_unlock_subtitle),
 						icon = Icons.Outlined.Lock,
 						iconTint = MaterialTheme.colorScheme.secondary,
 						iconBackground = MaterialTheme.colorScheme.secondary.copy(alpha = 0.12f),
@@ -253,8 +255,8 @@ private fun ProtectionSection(
 			}
 			PrivacifyExpressiveCard {
 				SettingsRow(
-					title = "Toast Notifications",
-					subtitle = "Show toast when sensors are blocked or unblocked",
+					title = stringResource(R.string.settings_toast_notifications),
+					subtitle = stringResource(R.string.settings_toast_subtitle),
 					icon = Icons.Outlined.Notifications,
 					iconTint = AutoGuardPrimary,
 					iconBackground = AutoGuardPrimary.copy(alpha = 0.12f),
@@ -270,8 +272,8 @@ private fun ProtectionSection(
 			}
 			PrivacifyExpressiveCard {
 				SettingsRow(
-					title = "Exempted Apps",
-					subtitle = "Apps that bypass Auto Guard sensor blocking",
+					title = stringResource(R.string.exemptions_title),
+					subtitle = stringResource(R.string.settings_exempted_subtitle),
 					icon = Icons.Outlined.Shield,
 					iconTint = MaterialTheme.colorScheme.tertiary,
 					iconBackground = MaterialTheme.colorScheme.tertiary.copy(alpha = 0.12f),
@@ -289,8 +291,8 @@ private fun ProtectionSection(
 		}
 		PrivacifyExpressiveCard {
 			SettingsRow(
-				title = "App Autostart",
-				subtitle = "Automatically start at boot",
+				title = stringResource(R.string.settings_autostart),
+				subtitle = stringResource(R.string.settings_autostart_subtitle),
 				icon = Icons.Outlined.PowerSettingsNew,
 				iconTint = AutoGuardPrimary,
 				iconBackground = AutoGuardPrimary.copy(alpha = 0.12f),
@@ -312,8 +314,8 @@ private fun ProtectionSection(
 
 	if (showAutostartProDialog) {
 		PrivacifyProDialog(
-			featureName = "App Autostart",
-			description = "Automatically start the app at boot for persistent protection.",
+			featureName = stringResource(R.string.settings_autostart),
+			description = stringResource(R.string.settings_autostart_desc),
 			onDismiss = { showAutostartProDialog = false }
 		)
 	}
@@ -375,12 +377,12 @@ private fun GeneralSection(
 	onThemeClick: () -> Unit
 ) {
 	Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-		PrivacifySectionHeader(title = "General")
+		PrivacifySectionHeader(title = stringResource(R.string.settings_section_general))
 		PrivacifyExpressiveCard {
 			Column(verticalArrangement = Arrangement.spacedBy(0.dp)) {
 				SettingsRow(
-					title = "Notifications",
-					subtitle = "Receive alerts when sensors are accessed",
+					title = stringResource(R.string.perm_notifications),
+					subtitle = stringResource(R.string.settings_notifications_subtitle),
 					icon = Icons.Outlined.Notifications,
 					iconTint = BlueVibrant,
 					iconBackground = BlueVibrant.copy(alpha = 0.12f),
@@ -393,7 +395,7 @@ private fun GeneralSection(
 				)
 				PrivacifyDivider(modifier = Modifier.padding(start = 56.dp))
 				SettingsRow(
-					title = "Scan Frequency",
+					title = stringResource(R.string.settings_scan_frequency),
 					subtitle = state.scanFrequencyLabel,
 					icon = Icons.Outlined.Radar,
 					iconTint = PurpleVibrant,
@@ -402,7 +404,7 @@ private fun GeneralSection(
 				)
 				PrivacifyDivider(modifier = Modifier.padding(start = 56.dp))
 				SettingsRow(
-					title = "App Theme",
+					title = stringResource(R.string.settings_theme),
 					subtitle = state.themeLabel,
 					icon = Icons.Outlined.DarkMode,
 					iconTint = MaterialTheme.colorScheme.tertiary,
@@ -433,7 +435,7 @@ private fun AdvancedSection(
 			verticalAlignment = Alignment.CenterVertically
 		) {
 			Text(
-				text = "ADVANCED",
+				text = stringResource(R.string.settings_section_advanced),
 				style = MaterialTheme.typography.labelMedium,
 				fontWeight = FontWeight.Black,
 				color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
@@ -479,7 +481,7 @@ private fun AdvancedSection(
 						)
 						Column(modifier = Modifier.weight(1f)) {
 							Text(
-								text = "Shell Type",
+								text = stringResource(R.string.settings_shell_type),
 								style = MaterialTheme.typography.titleMedium,
 								fontWeight = FontWeight.Bold
 							)
@@ -521,7 +523,7 @@ private fun AdvancedSection(
 							if (state.activeShellMethod.isNotEmpty()) {
 								Spacer(modifier = Modifier.height(4.dp))
 								Text(
-									text = "Active: ${state.activeShellMethod}",
+									text = stringResource(R.string.settings_active, state.activeShellMethod),
 									style = MaterialTheme.typography.bodySmall,
 									color = if (state.activeShellMethod == "Root") GreenVibrant else PurpleVibrant,
 									fontWeight = FontWeight.Medium
@@ -534,16 +536,16 @@ private fun AdvancedSection(
 		}
 
 		PrivacifyWarningBanner(
-			text = "Root or Shizuku privileges required for advanced features."
+			text = stringResource(R.string.settings_requires_privileges)
 		)
 
 		PrivacifyExpressiveCard {
 			Column(verticalArrangement = Arrangement.spacedBy(0.dp)) {
 				if (state.automationEnabled) {
 					SettingsRow(
-						title = "Battery Optimization",
-						subtitle = if (state.batteryOptimizationGranted) "Already unrestricted"
-						else "Disable for reliable background operation",
+						title = stringResource(R.string.settings_battery_optimization),
+						subtitle = if (state.batteryOptimizationGranted) stringResource(R.string.settings_battery_unrestricted)
+						else stringResource(R.string.settings_battery_disable),
 						icon = Icons.Outlined.Shield,
 						iconTint = if (state.batteryOptimizationGranted) GreenVibrant else PurpleVibrant,
 						iconBackground = (if (state.batteryOptimizationGranted) GreenVibrant else PurpleVibrant).copy(alpha = 0.12f),
@@ -584,12 +586,12 @@ private fun AboutSection() {
 	}
 
 	Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-		PrivacifySectionHeader(title = "About")
+		PrivacifySectionHeader(title = stringResource(R.string.settings_section_about))
 		PrivacifyExpressiveCard {
 			Column(verticalArrangement = Arrangement.spacedBy(0.dp)) {
 				SettingsRow(
-					title = "Open Source",
-					subtitle = "View source on GitHub",
+					title = stringResource(R.string.settings_open_source),
+					subtitle = stringResource(R.string.settings_open_source_subtitle),
 					icon = Icons.Outlined.Code,
 					iconTint = MaterialTheme.colorScheme.primary,
 					iconBackground = MaterialTheme.colorScheme.primaryContainer,
@@ -601,8 +603,8 @@ private fun AboutSection() {
 				)
 				PrivacifyDivider(modifier = Modifier.padding(start = 56.dp))
 				SettingsRow(
-					title = "Check for Updates",
-					subtitle = "Check for new version on Patreon",
+					title = stringResource(R.string.settings_check_updates),
+					subtitle = stringResource(R.string.settings_check_updates_subtitle),
 					icon = Icons.Outlined.CloudDownload,
 					iconTint = MaterialTheme.colorScheme.primary,
 					iconBackground = MaterialTheme.colorScheme.primaryContainer,
@@ -623,7 +625,7 @@ private fun AboutSection() {
 				)
 				PrivacifyDivider(modifier = Modifier.padding(start = 56.dp))
 				SettingsRow(
-					title = "Version",
+					title = stringResource(R.string.settings_version),
 					subtitle = versionName,
 					icon = Icons.Outlined.Info,
 					iconTint = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -635,8 +637,8 @@ private fun AboutSection() {
 
 	if (showUpdateProDialog) {
 		PrivacifyProDialog(
-			featureName = "Automatic Update Check",
-			description = "Get the latest Privacify Pro version directly from Patreon with one tap.",
+			featureName = stringResource(R.string.settings_auto_update),
+			description = stringResource(R.string.settings_auto_update_desc),
 			onDismiss = { showUpdateProDialog = false }
 		)
 	}
@@ -649,7 +651,7 @@ private fun Footer() {
 		horizontalAlignment = Alignment.CenterHorizontally
 	) {
 		Text(
-			text = "Privacify Control Center",
+			text = stringResource(R.string.settings_control_center),
 			style = MaterialTheme.typography.bodySmall,
 			color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
 		)

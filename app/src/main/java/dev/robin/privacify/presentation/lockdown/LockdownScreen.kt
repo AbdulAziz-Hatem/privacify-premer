@@ -1,5 +1,8 @@
 package dev.robin.privacify.presentation.lockdown
 
+import androidx.compose.ui.res.stringResource
+import dev.robin.privacify.core.utils.AppContextProvider
+
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
@@ -83,12 +86,12 @@ fun LockdownScreen(
 				IconButton(onClick = onBack) {
 					Icon(
 						imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-						contentDescription = "Back"
+						contentDescription = stringResource(R.string.action_back)
 					)
 				}
 				Spacer(modifier = Modifier.width(8.dp))
 				Text(
-					text = "Lockdown Mode",
+					text = stringResource(R.string.home_lockdown_mode),
 					style = MaterialTheme.typography.titleLarge,
 					fontWeight = FontWeight.Black,
 					modifier = Modifier.semantics { heading() }
@@ -109,7 +112,7 @@ fun LockdownScreen(
 			Spacer(modifier = Modifier.height(MdSpacing.sm))
 
 			Text(
-				text = "SENSOR CONTROLS",
+				text = stringResource(R.string.lockdown_sensor_controls),
 				style = MaterialTheme.typography.labelMedium,
 				fontWeight = FontWeight.Black,
 				color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
@@ -126,21 +129,21 @@ fun LockdownScreen(
 			) {
 				SensorCard(
 					icon = Icons.Outlined.Mic,
-					title = "Mic",
+					title = stringResource(R.string.sensor_mic),
 					active = state.micKilled,
 					activeColor = RedVibrant,
 					onClick = { viewModel.toggleMic() }
 				)
 				SensorCard(
 					icon = Icons.Outlined.CameraAlt,
-					title = "Camera",
+					title = stringResource(R.string.sensor_camera),
 					active = state.cameraKilled,
 					activeColor = OrangeVibrant,
 					onClick = { viewModel.toggleCamera() }
 				)
 				SensorCard(
 					icon = Icons.Outlined.LocationOn,
-					title = "Location",
+					title = stringResource(R.string.sensor_location),
 					active = state.locationKilled,
 					activeColor = AmberVibrant,
 					onClick = { viewModel.toggleLocation() }
@@ -156,7 +159,7 @@ fun LockdownScreen(
 					.background(RedVibrant.copy(alpha = 0.08f))
 					.padding(MdSpacing.sm)
 					.semantics {
-						contentDescription = "Important: Lockdown mode will disable active communications. Emergency calls may be affected."
+						contentDescription = AppContextProvider.context.getString(R.string.lockdown_important_cd)
 					}
 			) {
 				Row(
@@ -179,14 +182,14 @@ fun LockdownScreen(
 					}
 					Column {
 						Text(
-							text = "Important",
+							text = stringResource(R.string.lockdown_important_title),
 							style = MaterialTheme.typography.titleSmall,
 							fontWeight = FontWeight.Black,
 							color = RedVibrant
 						)
 						Spacer(modifier = Modifier.height(4.dp))
 						Text(
-							text = "Lockdown mode will disable active communications. Emergency calls may be affected. Use with caution.",
+							text = stringResource(R.string.lockdown_important_message),
 							style = MaterialTheme.typography.bodySmall,
 							color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f)
 						)
@@ -239,8 +242,8 @@ private fun PanicButton(
 				)
 				.clickable { onToggle() }
 				.semantics {
-					contentDescription = if (activated) "Deactivate lockdown" else "Activate lockdown mode"
-					stateDescription = if (activated) "Active" else "Inactive"
+					contentDescription = if (activated) AppContextProvider.context.getString(R.string.lockdown_deactivate_cd) else AppContextProvider.context.getString(R.string.lockdown_activate_cd)
+					stateDescription = if (activated) AppContextProvider.context.getString(R.string.state_active) else AppContextProvider.context.getString(R.string.state_inactive)
 				},
 			contentAlignment = Alignment.Center
 		) {
@@ -255,7 +258,7 @@ private fun PanicButton(
 				)
 				Spacer(modifier = Modifier.height(8.dp))
 				Text(
-					text = if (activated) "ACTIVE" else "LOCKDOWN",
+					text = if (activated) stringResource(R.string.lockdown_activated) else stringResource(R.string.lockdown_button),
 					style = MaterialTheme.typography.titleMedium,
 					fontWeight = FontWeight.Black,
 					color = Color.White
@@ -264,7 +267,7 @@ private fun PanicButton(
 		}
 		Spacer(modifier = Modifier.height(12.dp))
 		Text(
-			text = if (activated) "Tap to deactivate lockdown" else "Tap to activate lockdown mode",
+			text = if (activated) stringResource(R.string.lockdown_tap_deactivate) else stringResource(R.string.lockdown_tap_activate),
 			style = MaterialTheme.typography.bodySmall,
 			color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
 			textAlign = TextAlign.Center
@@ -284,7 +287,7 @@ private fun StatusBanner(active: Boolean) {
 			)
 			.padding(MdSpacing.sm)
 			.semantics {
-				contentDescription = if (active) "Lockdown active: all sensors disabled" else "Standard mode: privacy controls at normal levels"
+				contentDescription = if (active) AppContextProvider.context.getString(R.string.lockdown_active_cd) else AppContextProvider.context.getString(R.string.lockdown_standard_cd)
 			},
 		horizontalArrangement = Arrangement.spacedBy(MdSpacing.xs),
 		verticalAlignment = Alignment.CenterVertically
@@ -297,14 +300,14 @@ private fun StatusBanner(active: Boolean) {
 		)
 		Column {
 			Text(
-				text = if (active) "All sensors disabled" else "Standard mode",
+				text = if (active) stringResource(R.string.lockdown_all_sensors_disabled) else stringResource(R.string.lockdown_standard_mode),
 				style = MaterialTheme.typography.titleSmall,
 				fontWeight = FontWeight.Black,
 				color = if (active) GreenVibrant else MaterialTheme.colorScheme.onSurface
 			)
 			Text(
-				text = if (active) "Lockdown is active — device is secured"
-				else "Privacy controls are at normal levels",
+				text = if (active) stringResource(R.string.lockdown_active_message)
+				else stringResource(R.string.lockdown_standard_message),
 				style = MaterialTheme.typography.bodySmall,
 				color = MaterialTheme.colorScheme.onSurfaceVariant
 			)

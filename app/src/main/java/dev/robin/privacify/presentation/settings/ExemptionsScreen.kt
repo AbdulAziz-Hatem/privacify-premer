@@ -1,5 +1,8 @@
 package dev.robin.privacify.presentation.settings
 
+import androidx.compose.ui.res.stringResource
+import dev.robin.privacify.core.utils.AppContextProvider
+
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -92,9 +95,9 @@ private fun removeExemption(context: Context, sensorType: String, pkg: String) {
 private data class SensorTab(val type: String, val label: String, val icon: ImageVector)
 
 private val sensorTabs = listOf(
-	SensorTab("MIC", "Microphone", Icons.Outlined.Mic),
-	SensorTab("CAMERA", "Camera", Icons.Outlined.Videocam),
-	SensorTab("LOCATION", "Location", Icons.Outlined.LocationOn),
+	SensorTab("MIC", AppContextProvider.context.getString(R.string.perm_microphone), Icons.Outlined.Mic),
+	SensorTab("CAMERA", AppContextProvider.context.getString(R.string.perm_camera), Icons.Outlined.Videocam),
+	SensorTab("LOCATION", AppContextProvider.context.getString(R.string.perm_location), Icons.Outlined.LocationOn),
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -113,17 +116,17 @@ fun ExemptionsScreen(onBack: () -> Unit) {
 	Scaffold(
 		topBar = {
 			TopAppBar(
-				title = { Text("Exempted Apps", fontWeight = FontWeight.Bold) },
+				title = { Text(stringResource(R.string.exemptions_title), fontWeight = FontWeight.Bold) },
 				navigationIcon = {
 					IconButton(onClick = onBack) {
-						Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+						Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.action_back))
 					}
 				}
 			)
 		},
 		floatingActionButton = {
 			SmallFloatingActionButton(onClick = { showAppPicker = true }) {
-				Icon(Icons.Filled.Add, contentDescription = "Add app")
+				Icon(Icons.Filled.Add, contentDescription = stringResource(R.string.action_add_app))
 			}
 		}
 	) { padding ->
@@ -162,14 +165,14 @@ fun ExemptionsScreen(onBack: () -> Unit) {
 				Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
 					Column(horizontalAlignment = Alignment.CenterHorizontally) {
 						Text(
-							text = "No exemptions",
+							text = stringResource(R.string.exemptions_empty),
 							style = MaterialTheme.typography.titleMedium,
 							fontWeight = FontWeight.Bold,
 							color = MaterialTheme.colorScheme.onSurface
 						)
 						Spacer(modifier = Modifier.height(MdSpacing.xxs))
 						Text(
-							text = "Tap + to add apps exempt from\n${sensorTabs[selectedTabIndex].label.lowercase()} blocking",
+							text = stringResource(R.string.exemptions_hint, sensorTabs[selectedTabIndex].label.lowercase()),
 							style = MaterialTheme.typography.bodyMedium,
 							color = MaterialTheme.colorScheme.onSurfaceVariant,
 							textAlign = TextAlign.Center
@@ -287,7 +290,7 @@ private fun ExemptionItem(packageName: String, onRemove: () -> Unit) {
 			IconButton(onClick = onRemove) {
 				Icon(
 					Icons.Filled.Close,
-					contentDescription = "Remove exemption",
+					contentDescription = stringResource(R.string.exemptions_remove_cd),
 					tint = MaterialTheme.colorScheme.error
 				)
 			}
@@ -354,14 +357,14 @@ private fun AppPickerDialog(
 		onDismissRequest = onDismiss,
 		shape = ExpressiveExtraLargeIncreased,
 		title = {
-			Text("Add App", fontWeight = FontWeight.Bold)
+			Text(stringResource(R.string.exemptions_add_app_title), fontWeight = FontWeight.Bold)
 		},
 		text = {
 			Column {
 				OutlinedTextField(
 					value = searchQuery,
 					onValueChange = { searchQuery = it },
-					placeholder = { Text("Search apps...") },
+					placeholder = { Text(stringResource(R.string.exemptions_search_hint)) },
 					modifier = Modifier.fillMaxWidth(),
 					singleLine = true,
 					shape = MaterialTheme.shapes.large
@@ -369,7 +372,7 @@ private fun AppPickerDialog(
 				Spacer(modifier = Modifier.height(MdSpacing.xs))
 				if (filteredApps.isEmpty()) {
 					Text(
-						text = "No apps found",
+						text = stringResource(R.string.exemptions_no_apps),
 						color = MaterialTheme.colorScheme.onSurfaceVariant,
 						modifier = Modifier.padding(vertical = MdSpacing.sm)
 					)
@@ -397,7 +400,7 @@ private fun AppPickerDialog(
 		confirmButton = {},
 		dismissButton = {
 			TextButton(onClick = onDismiss) {
-				Text("Cancel", fontWeight = FontWeight.Bold)
+				Text(stringResource(R.string.action_cancel), fontWeight = FontWeight.Bold)
 			}
 		}
 	)

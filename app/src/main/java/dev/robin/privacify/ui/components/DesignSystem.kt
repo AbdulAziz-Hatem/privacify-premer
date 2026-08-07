@@ -1,5 +1,8 @@
 package dev.robin.privacify.ui.components
 
+import androidx.compose.ui.res.stringResource
+import dev.robin.privacify.core.utils.AppContextProvider
+
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
@@ -403,8 +406,8 @@ fun SensorCard(
 		modifier = modifier
 			.size(96.dp)
 			.semantics {
-				this.contentDescription = "$title, ${if (active) "Blocked" else "Monitoring"}"
-				this.stateDescription = if (active) "Blocked" else "Active"
+				this.contentDescription = AppContextProvider.context.getString(R.string.ds_sensor_desc, title, if (active) AppContextProvider.context.getString(R.string.ds_blocked) else AppContextProvider.context.getString(R.string.ds_monitoring))
+				this.stateDescription = if (active) AppContextProvider.context.getString(R.string.ds_blocked) else AppContextProvider.context.getString(R.string.state_active)
 				this.role = Role.Button
 			}
 			.clickable { onClick() },
@@ -485,15 +488,15 @@ fun PrivacifyAutoGuardCard(
 		) {
 			Column(modifier = Modifier.weight(1f)) {
 				Text(
-					text = "Auto-Guard",
+					text = stringResource(R.string.feature_auto_guard),
 					style = MaterialTheme.typography.titleMedium,
 					fontWeight = FontWeight.Bold,
 					color = Color.White
 				)
 				Spacer(modifier = Modifier.height(2.dp))
 				Text(
-					text = if (enabled) "Monitors sensors & pauses kill switches when in use"
-					else "Intelligent sensor protection",
+					text = if (enabled) stringResource(R.string.ds_auto_guard_enabled_desc)
+					else stringResource(R.string.ds_auto_guard_desc),
 					style = MaterialTheme.typography.bodySmall,
 					color = Color.White.copy(alpha = 0.8f)
 				)
@@ -519,8 +522,8 @@ fun PrivacifyAutoGuardCard(
 
 	if (showProDialog.value) {
 		PrivacifyProDialog(
-			featureName = "Auto-Guard",
-			description = "Automatically manage kill switches when sensors are in use.",
+			featureName = stringResource(R.string.feature_auto_guard),
+			description = stringResource(R.string.ds_auto_guard_feature_desc),
 			onDismiss = { showProDialog.value = false }
 		)
 	}
@@ -571,7 +574,7 @@ fun PrivacifyProDialog(
 						)
 						Spacer(modifier = Modifier.height(12.dp))
 						Text(
-							text = "Pro Feature",
+							text = stringResource(R.string.ds_pro_feature),
 							style = MaterialTheme.typography.titleLarge,
 							fontWeight = FontWeight.Black,
 							color = Color.White
@@ -600,7 +603,7 @@ fun PrivacifyProDialog(
 					Spacer(modifier = Modifier.height(MdSpacing.xs))
 
 					Text(
-						text = "Upgrade to Pro to unlock this and other premium features.",
+						text = stringResource(R.string.ds_pro_unlock),
 						style = MaterialTheme.typography.bodySmall,
 						color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
 						textAlign = TextAlign.Center
@@ -629,7 +632,7 @@ fun PrivacifyProDialog(
 						)
 						Spacer(modifier = Modifier.width(MdSpacing.xs))
 						Text(
-							text = "Support on Patreon",
+							text = stringResource(R.string.ds_support_patreon),
 							fontWeight = FontWeight.Black
 						)
 					}
@@ -638,7 +641,7 @@ fun PrivacifyProDialog(
 
 					TextButton(onClick = onDismiss) {
 						Text(
-							text = "Maybe Later",
+							text = stringResource(R.string.ds_maybe_later),
 							fontWeight = FontWeight.Bold,
 							color = MaterialTheme.colorScheme.onSurfaceVariant
 						)

@@ -1,5 +1,7 @@
 package dev.robin.privacify.presentation.apps
 
+import androidx.compose.ui.res.stringResource
+
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -90,12 +92,12 @@ fun AppsScreen() {
 					verticalAlignment = Alignment.CenterVertically
 				) {
 					Text(
-						text = "Permission Scanner",
+						text = stringResource(R.string.apps_permission_scanner),
 						style = MaterialTheme.typography.headlineSmall,
 						fontWeight = FontWeight.Black
 					)
 					PrivacifyBadge(
-						text = "${state.apps.size} apps",
+						text = stringResource(R.string.apps_count, state.apps.size),
 						color = MaterialTheme.colorScheme.primary
 					)
 				}
@@ -107,7 +109,7 @@ fun AppsScreen() {
 					shape = MaterialTheme.shapes.large,
 					singleLine = true,
 					placeholder = {
-						Text(text = "Search apps or permissions")
+						Text(text = stringResource(R.string.apps_search_hint))
 					},
 					leadingIcon = {
 						Icon(
@@ -133,28 +135,28 @@ fun AppsScreen() {
 			) {
 				item {
 					FilterChip(
-						label = "All",
+						label = stringResource(R.string.filter_all),
 						selected = state.filter == RiskFilter.All,
 						onClick = { viewModel.onFilterChanged(RiskFilter.All) }
 					)
 				}
 				item {
 					FilterChip(
-						label = "High Risk",
+						label = stringResource(R.string.filter_high_risk),
 						selected = state.filter == RiskFilter.High,
 						onClick = { viewModel.onFilterChanged(RiskFilter.High) }
 					)
 				}
 				item {
 					FilterChip(
-						label = "Medium Risk",
+						label = stringResource(R.string.filter_medium_risk),
 						selected = state.filter == RiskFilter.Medium,
 						onClick = { viewModel.onFilterChanged(RiskFilter.Medium) }
 					)
 				}
 				item {
 					FilterChip(
-						label = "Safe",
+						label = stringResource(R.string.filter_safe),
 						selected = state.filter == RiskFilter.Low,
 						onClick = { viewModel.onFilterChanged(RiskFilter.Low) }
 					)
@@ -303,19 +305,19 @@ private fun AppRow(
 private fun RiskBadge(app: AppPrivacyInfo) {
 	val (label, bg, fg) = when (app.riskLevel) {
 		AppRiskLevel.High -> Triple(
-			"High Risk",
+			stringResource(R.string.filter_high_risk),
 			RedVibrant.copy(alpha = 0.15f),
 			RedVibrant
 		)
 
 		AppRiskLevel.Medium -> Triple(
-			"Medium",
+			stringResource(R.string.risk_medium),
 			OrangeVibrant.copy(alpha = 0.15f),
 			OrangeVibrant
 		)
 
 		AppRiskLevel.Low -> Triple(
-			"Safe",
+			stringResource(R.string.filter_safe),
 			GreenVibrant.copy(alpha = 0.15f),
 			GreenVibrant
 		)

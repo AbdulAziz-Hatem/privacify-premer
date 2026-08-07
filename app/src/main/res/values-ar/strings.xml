@@ -1,0 +1,270 @@
+<resources>
+	<!-- App -->
+	<string name="app_name">Privacify</string>
+
+	<!-- Navigation -->
+	<string name="nav_home">الرئيسية</string>
+	<string name="nav_apps">التطبيقات</string>
+	<string name="nav_analytics">التحليلات</string>
+	<string name="nav_settings">الإعدادات</string>
+
+	<!-- Quick settings tile & widgets -->
+	<string name="tile_lockdown_label">الإقفال</string>
+	<string name="widget_lockdown_description">تبديل وضع الإقفال</string>
+	<string name="widget_privacy_controls_description">تبديل حظر الميكروفون والكاميرا والموقع</string>
+
+	<!-- Common -->
+	<string name="action_back">رجوع</string>
+	<string name="action_cancel">إلغاء</string>
+	<string name="action_clear">مسح</string>
+	<string name="action_add">إضافة</string>
+	<string name="action_execute">تنفيذ</string>
+	<string name="action_view_all">عرض الكل</string>
+	<string name="action_add_app">إضافة تطبيق</string>
+	<string name="state_active">نشط</string>
+	<string name="state_inactive">غير نشط</string>
+	<string name="state_granted">ممنوح</string>
+	<string name="state_denied">مرفوض</string>
+	<string name="time_running">قيد التشغيل</string>
+	<string name="time_now">الآن</string>
+	<string name="time_today">اليوم</string>
+	<string name="time_yesterday">أمس</string>
+
+	<!-- Sensors & permissions -->
+	<string name="perm_location">الموقع</string>
+	<string name="perm_camera">الكاميرا</string>
+	<string name="perm_microphone">الميكروفون</string>
+	<string name="perm_contacts">جهات الاتصال</string>
+	<string name="perm_sms_phone">الرسائل/الهاتف</string>
+	<string name="perm_usage_access">إذن الاستخدام</string>
+	<string name="perm_usage_access_desc">كشف التطبيقات النشطة لتطبيق قواعد الخصوصية</string>
+	<string name="perm_notifications">الإشعارات</string>
+	<string name="perm_notifications_desc">تلقي تنبيهات عند وصول التطبيقات إلى المستشعرات</string>
+	<string name="perm_root_access">صلاحية Root</string>
+	<string name="perm_root_granted">تم منح صلاحية Root</string>
+	<string name="perm_root_requires">يتطلب Magisk أو KernelSU</string>
+	<string name="perm_shizuku">Shizuku</string>
+	<string name="perm_shizuku_granted">تم منح إذن Shizuku</string>
+	<string name="perm_shizuku_requires">منح إذن Shizuku للتحكم على مستوى النظام</string>
+	<string name="sensor_mic">ميكروفون</string>
+	<string name="sensor_camera">كاميرا</string>
+	<string name="sensor_location">موقع</string>
+
+	<!-- Risk levels & filters -->
+	<string name="risk_high">مرتفع</string>
+	<string name="risk_medium">متوسط</string>
+	<string name="risk_low">منخفض</string>
+	<string name="risk_high_app">تطبيق عالي الخطورة</string>
+	<string name="risk_medium_app">تطبيق متوسط الخطورة</string>
+	<string name="risk_low_app">تطبيق منخفض الخطورة</string>
+	<string name="risk_elevated">مرتفع</string>
+	<string name="risk_moderate">معتدل</string>
+	<string name="filter_all">الكل</string>
+	<string name="filter_high_risk">عالٍ الخطورة</string>
+	<string name="filter_medium_risk">متوسط الخطورة</string>
+	<string name="filter_safe">آمن</string>
+
+	<!-- Analytics -->
+	<string name="analytics_title">تحليلات الخصوصية</string>
+	<string name="analytics_grants_summary">%1$s إذن ممنوح عبر %2$s تطبيقات</string>
+	<string name="analytics_apps_count">%1$s تطبيقات</string>
+	<plurals name="analytics_apps_list_count">
+		<item quantity="zero">لا توجد تطبيقات</item>
+		<item quantity="one">تطبيق واحد</item>
+		<item quantity="two">تطبيقان</item>
+		<item quantity="few">%d تطبيقات</item>
+		<item quantity="many">%d تطبيقاً</item>
+		<item quantity="other">%d تطبيق</item>
+	</plurals>
+	<string name="analytics_permission_distribution">توزيع الأذونات</string>
+	<string name="analytics_risk_breakdown">تفصيل الخطورة</string>
+	<string name="analytics_grants_total">%1$s إذن ممنوح إجمالاً عبر %2$s تطبيقات</string>
+	<string name="analytics_high_risk_apps">التطبيقات عالية الخطورة</string>
+	<string name="analytics_no_high_risk">لم يتم رصد تطبيقات عالية الخطورة</string>
+	<string name="analytics_sensor_history">سجل استخدام المستشعرات</string>
+	<string name="analytics_no_sensor_data">لا يوجد استخدام مسجل للمستشعرات بعد.\nفعّل Auto-Guard لبدء التتبع.</string>
+	<string name="analytics_more_sessions">+ %1$s إضافية — اضغط لعرض الكل</string>
+	<string name="analytics_event_duration">· %1$s</string>
+	<string name="analytics_session_line">%1$s: %2$s - %3$s</string>
+	<string name="badge_high">مرتفع</string>
+
+	<!-- App detail -->
+	<string name="detail_activity_insights">رؤى النشاط</string>
+	<string name="detail_permissions_granted">الأذونات الممنوحة</string>
+	<string name="detail_risk_level">مستوى الخطورة</string>
+	<string name="detail_permissions_header">الأذونات (ممنوح %1$s من %2$s)</string>
+	<string name="detail_no_sensitive_permissions">لم يتم رصد أذونات حساسة</string>
+	<string name="detail_advanced_controls">أدوات تحكم متقدمة</string>
+	<string name="detail_action">إجراء</string>
+	<string name="dialog_confirm_root_action">تأكيد إجراء Root</string>
+	<string name="dialog_root_action_message">يتطلب هذا الإجراء صلاحيات Root وقد يؤثر على استقرار النظام. هل أنت متأكد من رغبتك في %1$s؟</string>
+	<string name="badge_root_only">يتطلب Root</string>
+	<string name="action_force_revoke_permissions">إجبار سحب الأذونات</string>
+	<string name="action_force_revoke_desc_rooted">تجاوز قيود النظام</string>
+	<string name="action_freeze_app">تجميد حالة التطبيق</string>
+	<string name="action_freeze_app_desc_rooted">تعليق التنفيذ بالكامل</string>
+	<string name="action_block_sensors">حظر الوصول إلى المستشعرات</string>
+	<string name="action_block_sensors_desc_rooted">تعطيل الجيروسكوب ونظام تحديد المواقع ومقياس التسارع</string>
+	<string name="requires_root_access">يتطلب صلاحية Root</string>
+
+	<!-- Apps screen -->
+	<string name="apps_permission_scanner">ماسح الأذونات</string>
+	<string name="apps_count">%1$s تطبيقات</string>
+	<string name="apps_search_hint">ابحث عن التطبيقات أو الأذونات</string>
+
+	<!-- Dashboard / Home -->
+	<string name="status_scanning">جارٍ فحص النظام…</string>
+	<string name="status_scan_complete">اكتمل الفحص. لوحة المعلومات محدّثة.</string>
+	<string name="score_status_verified">تم التحقق من سلامة النظام. لا يوجد وصول غير مصرح به.</string>
+	<string name="score_status_moderate">تم رصد خطر متوسط. راجع التطبيقات ذات الأذونات العالية.</string>
+	<string name="score_status_high">تم رصد خطر مرتفع. يُنصح بتفعيل الإقفال.</string>
+	<string name="home_status_secure">آمن</string>
+	<string name="home_status_moderate">متوسط</string>
+	<string name="home_status_at_risk">في خطر</string>
+	<string name="home_section_protection">الحماية</string>
+	<string name="home_lockdown_content_desc">وضع الإقفال، %1$s</string>
+	<string name="home_lockdown_mode">وضع الإقفال</string>
+	<string name="lockdown_status_all_blocked">جميع المستشعرات محظورة · عدم الإزعاج مفعّل</string>
+	<string name="lockdown_status_block">حظر جميع المستشعرات فوراً</string>
+	<string name="lockdown_requires_access">يتطلب صلاحية %1$s</string>
+	<string name="home_scan_now">فحص الآن</string>
+	<string name="home_stat_apps">التطبيقات</string>
+	<string name="home_stat_permissions">الأذونات</string>
+
+	<!-- Lockdown -->
+	<string name="lockdown_sensor_controls">أدوات تحكم المستشعرات</string>
+	<string name="lockdown_important_cd">هام: سيؤدي وضع الإقفال إلى تعطيل الاتصالات النشطة. قد تتأثر المكالمات الطارئة.</string>
+	<string name="lockdown_important_title">هام</string>
+	<string name="lockdown_important_message">سيؤدي وضع الإقفال إلى تعطيل الاتصالات النشطة. قد تتأثر المكالمات الطارئة. استخدمه بحذر.</string>
+	<string name="lockdown_deactivate_cd">إلغاء تفعيل الإقفال</string>
+	<string name="lockdown_activate_cd">تفعيل وضع الإقفال</string>
+	<string name="lockdown_activated">نشط</string>
+	<string name="lockdown_button">إقفال</string>
+	<string name="lockdown_tap_deactivate">اضغط لإلغاء تفعيل الإقفال</string>
+	<string name="lockdown_tap_activate">اضغط لتفعيل وضع الإقفال</string>
+	<string name="lockdown_active_cd">الإقفال نشط: جميع المستشعرات معطلة</string>
+	<string name="lockdown_standard_cd">الوضع العادي: أدوات التحكم في الخصوصية عند المستويات الطبيعية</string>
+	<string name="lockdown_all_sensors_disabled">جميع المستشعرات معطلة</string>
+	<string name="lockdown_standard_mode">الوضع العادي</string>
+	<string name="lockdown_active_message">الإقفال نشط — الجهاز مؤمّن</string>
+	<string name="lockdown_standard_message">أدوات التحكم في الخصوصية عند المستويات الطبيعية</string>
+
+	<!-- Onboarding -->
+	<string name="onboarding_language_system">النظام</string>
+	<string name="onboarding_language_english">English</string>
+	<string name="onboarding_language_arabic">العربية</string>
+	<string name="onboarding_welcome">مرحباً بك في\nPrivacify</string>
+	<string name="onboarding_by">من إعداد Robin</string>
+	<string name="onboarding_begin">لنبدأ</string>
+	<string name="onboarding_privacy_disclaimer">إخلاء مسؤولية الخصوصية</string>
+	<string name="onboarding_disclaimer_body">يتطلب Privacify أذونات معينة لمراقبة ومنع الوصول غير المصرح به إلى مستشعراتك وبياناتك.</string>
+	<string name="onboarding_what_we_need">ما الذي نحتاجه:</string>
+	<string name="onboarding_permissions_list">• إذن الاستخدام — لكشف التطبيقات النشطة حالياً\n• الإشعارات — لتنبيهك عند الوصول إلى المستشعرات\n• Root/Shizuku — اختياري، للحماية المتقدمة على مستوى النظام</string>
+	<string name="onboarding_privacy_matters">خصوصيتك تهمنا:</string>
+	<string name="onboarding_privacy_statement">نحن لا نجمع أو نخزن أو نشارك أي بيانات شخصية. تتم جميع عمليات المراقبة محلياً على جهازك.</string>
+	<string name="onboarding_i_understand">فهمت</string>
+	<string name="onboarding_grant_root">منح صلاحية Root</string>
+	<string name="onboarding_root_body">تمنح صلاحية Root لـ Privacify القدرة على التحكم المباشر في مستشعرات الجهاز لأقصى حماية للخصوصية.\n\nلمنح صلاحية Root:\n1. ثبّت Magisk أو KernelSU على جهازك\n2. وافق على طلب Root عند ظهوره\n3. عد إلى هنا للتحقق</string>
+	<string name="onboarding_got_it">حسناً</string>
+	<string name="onboarding_grant_shizuku">منح إذن Shizuku</string>
+	<string name="onboarding_shizuku_body">يتيح Shizuku لـ Privacify التحكم في مستشعرات النظام دون صلاحية Root كاملة.\n\nلإعداد Shizuku:\n1. ثبّت Shizuku من متجر Google Play\n2. افتح Shizuku وابدأ الخدمة\n3. امنح Privacify الإذن عند ظهور الطلب\n4. عد إلى هنا للتحقق</string>
+	<string name="onboarding_required_access">الوصول المطلوب</string>
+	<string name="onboarding_required_access_body">امنح الأذونات التالية للحصول على الوظائف الكاملة.</string>
+	<string name="onboarding_all_set">تم كل شيء</string>
+	<string name="badge_advanced">متقدم</string>
+	<string name="feature_monitor_sensors">مراقبة المستشعرات</string>
+	<string name="feature_monitor_sensors_desc">تتبّع وصول الميكروفون والكاميرا والموقع في الوقت الفعلي.</string>
+	<string name="feature_block_trackers">حظر المتتبعات</string>
+	<string name="feature_block_trackers_desc">تقييد الوصول إلى الإنترنت وإيقاف تتبع البيانات.</string>
+	<string name="feature_lockdown_desc">تعطيل شامل للمستشعرات بلمسة واحدة.</string>
+	<string name="feature_auto_guard">Auto-Guard</string>
+	<string name="feature_auto_guard_desc">حماية ذكية تتكيف مع استخدامك.</string>
+	<string name="onboarding_feature_intro">مقدمة\nالمزايا</string>
+	<string name="onboarding_protect_life">احمِ حياتك الرقمية بمجموعتنا الشاملة من أدوات الخصوصية.</string>
+	<string name="onboarding_let_me_in">دخول</string>
+
+	<!-- Sensor log -->
+	<string name="sensorlog_pro_required">قم بالترقية إلى Pro لعرض سجل استخدام المستشعرات.</string>
+	<string name="sensorlog_empty">لا يوجد استخدام مسجل للمستشعرات بعد</string>
+	<string name="sensorlog_empty_body">ستظهر سجلات استخدام المستشعرات هنا\nبعد أن يكتشف Auto-Guard أي نشاط.</string>
+	<string name="sensorlog_clear_history_cd">مسح السجل</string>
+	<string name="sensorlog_clear_title">مسح السجل؟</string>
+	<string name="sensorlog_clear_message">سيؤدي هذا إلى حذف جميع سجلات استخدام المستشعرات نهائياً.</string>
+	<string name="sensorlog_access">وصول إلى %1$s</string>
+	<string name="sensorlog_started">بدأ</string>
+	<string name="sensorlog_stopped">توقف</string>
+	<string name="sensorlog_active">نشط</string>
+
+	<!-- Exemptions -->
+	<string name="exemptions_title">التطبيقات المستثناة</string>
+	<string name="exemptions_empty">لا توجد استثناءات</string>
+	<string name="exemptions_hint">اضغط + لإضافة تطبيقات مستثناة من حظر\n%1$s</string>
+	<string name="exemptions_remove_cd">إزالة الاستثناء</string>
+	<string name="exemptions_add_app_title">إضافة تطبيق</string>
+	<string name="exemptions_search_hint">ابحث عن التطبيقات…</string>
+	<string name="exemptions_no_apps">لم يتم العثور على تطبيقات</string>
+
+	<!-- Hosts editor -->
+	<string name="hosts_editor">محرر Hosts</string>
+	<string name="hosts_add_rule">إضافة قاعدة حظر</string>
+	<string name="hosts_domain_placeholder">domain.to.block</string>
+	<string name="hosts_content">محتوى HOSTS</string>
+	<string name="hosts_save">حفظ التغييرات</string>
+
+	<!-- Settings -->
+	<string name="settings_section_protection">الحماية</string>
+	<string name="badge_featured">مميز</string>
+	<string name="settings_mic_subtitle">حظر الميكروفون عند استماع التطبيقات</string>
+	<string name="settings_camera_subtitle">حظر الكاميرا عند تسجيل التطبيقات</string>
+	<string name="settings_location_subtitle">حظر الموقع عند تتبع التطبيقات</string>
+	<string name="settings_face_unlock">فتح الوجه</string>
+	<string name="settings_face_unlock_subtitle">فتح الكاميرا لفترة وجيزة عند تشغيل الشاشة لفتح الوجه</string>
+	<string name="settings_toast_notifications">إشعارات Toast</string>
+	<string name="settings_toast_subtitle">إظهار إشعار عند حظر المستشعرات أو إلغاء حظرها</string>
+	<string name="settings_exempted_subtitle">التطبيقات التي تتجاوز حظر مستشعرات Auto Guard</string>
+	<string name="settings_autostart">بدء تلقائي</string>
+	<string name="settings_autostart_subtitle">البدء تلقائياً عند الإقلاع</string>
+	<string name="settings_autostart_desc">بدء التطبيق تلقائياً عند الإقلاع لحماية مستمرة.</string>
+	<string name="settings_section_general">عام</string>
+	<string name="settings_notifications_subtitle">تلقي تنبيهات عند الوصول إلى المستشعرات</string>
+	<string name="settings_scan_frequency">وتيرة الفحص</string>
+	<string name="settings_theme">سمة التطبيق</string>
+	<string name="shell_auto">تلقائي</string>
+	<string name="shell_root">Root</string>
+	<string name="shell_shizuku">Shizuku</string>
+	<string name="settings_section_advanced">متقدم</string>
+	<string name="settings_root_status">Root</string>
+	<string name="settings_no_root">لا يوجد Root</string>
+	<string name="settings_shizuku_status">Shizuku</string>
+	<string name="settings_root_shizuku_chip">Root/Shizuku</string>
+	<string name="settings_shell_type">نوع Shell</string>
+	<string name="settings_active">نشط: %1$s</string>
+	<string name="settings_requires_privileges">مطلوب صلاحيات Root أو Shizuku للميزات المتقدمة.</string>
+	<string name="settings_battery_optimization">تحسين البطارية</string>
+	<string name="settings_battery_unrestricted">غير مقيد بالفعل</string>
+	<string name="settings_battery_disable">عطّله للتشغيل الموثوق في الخلفية</string>
+	<string name="settings_section_about">حول</string>
+	<string name="settings_open_source">مصدر مفتوح</string>
+	<string name="settings_open_source_subtitle">عرض المصدر على GitHub</string>
+	<string name="settings_check_updates">التحقق من التحديثات</string>
+	<string name="settings_check_updates_subtitle">التحقق من إصدار جديد على Patreon</string>
+	<string name="settings_version">الإصدار</string>
+	<string name="settings_auto_update">التحقق التلقائي من التحديثات</string>
+	<string name="settings_auto_update_desc">احصل على أحدث إصدار من Privacify Pro مباشرة من Patreon بلمسة واحدة.</string>
+	<string name="settings_control_center">مركز التحكم في الخصوصية</string>
+
+	<!-- Design system -->
+	<string name="ds_blocked">محظور</string>
+	<string name="ds_monitoring">مراقبة</string>
+	<string name="ds_sensor_desc">%1$s، %2$s</string>
+	<string name="ds_auto_guard_enabled_desc">يراقب المستشعرات ويوقف مفاتيح الإيقاف عند الاستخدام</string>
+	<string name="ds_auto_guard_desc">حماية ذكية للمستشعرات</string>
+	<string name="ds_auto_guard_feature_desc">إدارة مفاتيح الإيقاف تلقائياً عند استخدام المستشعرات.</string>
+	<string name="ds_pro_feature">ميزة Pro</string>
+	<string name="ds_pro_unlock">قم بالترقية إلى Pro لفتح هذه الميزة وغيرها من الميزات المميزة.</string>
+	<string name="ds_support_patreon">الدعم عبر Patreon</string>
+	<string name="ds_maybe_later">ربما لاحقاً</string>
+	<string name="action_force_revoke_pending">إجبار سحب الأذونات</string>
+	<string name="action_freeze_pending">تجميد هذا التطبيق</string>
+	<string name="action_block_sensors_pending">حظر الوصول إلى المستشعرات</string>
+</resources>
