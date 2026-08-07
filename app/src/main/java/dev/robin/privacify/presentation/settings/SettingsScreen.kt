@@ -437,7 +437,11 @@ private fun AdvancedSection(
 	onRefreshRuntimeStatus: () -> Unit,
 	onRequestShizukuPermission: () -> Unit
 ) {
-	val shellOptions = listOf(stringResource(R.string.shell_auto), stringResource(R.string.shell_root), stringResource(R.string.shell_shizuku))
+	val shellOptions = listOf(
+		"auto" to stringResource(R.string.shell_auto),
+		"root" to stringResource(R.string.shell_root),
+		"shizuku" to stringResource(R.string.shell_shizuku)
+	)
 
 	Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
 		Row(
@@ -500,8 +504,8 @@ private fun AdvancedSection(
 							)
 							Spacer(modifier = Modifier.height(6.dp))
 							Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-								shellOptions.forEach { option ->
-									val isSelected = option == state.shellTypeLabel
+								shellOptions.forEach { (value, label) ->
+									val isSelected = label == state.shellTypeLabel
 									Box(
 										modifier = Modifier
 											.clip(RoundedCornerShape(999.dp))
@@ -511,13 +515,8 @@ private fun AdvancedSection(
 											)
 											.semantics { liveRegion = LiveRegionMode.Polite }
 											.selectable(selected = isSelected, onClick = {
-												val newValue = when (option) {
-													stringResource(R.string.shell_root) -> "root"
-													stringResource(R.string.shell_shizuku) -> "shizuku"
-													else -> "auto"
-												}
-												onShellTypeChange(newValue)
-												if (option == stringResource(R.string.shell_shizuku) && state.shizukuStatus != "Ready") {
+												onShellTypeChange(value)
+												if (value == "shizuku" && state.shizukuStatus != "Ready") {
 													onRequestShizukuPermission()
 												}
 												onRefreshRuntimeStatus()
@@ -525,7 +524,7 @@ private fun AdvancedSection(
 											.padding(horizontal = 16.dp, vertical = 8.dp)
 									) {
 										Text(
-											text = option,
+											text = label,
 											style = MaterialTheme.typography.labelLarge,
 											fontWeight = if (isSelected) FontWeight.Black else FontWeight.Bold,
 											color = if (isSelected) Color.White
