@@ -1,13 +1,25 @@
 v2.7-ar — النسخة العربية
-• ترجمة كاملة لواجهة التطبيق إلى اللغة العربية (228 نصاً)
+• ترجمة كاملة لواجهة التطبيق إلى اللغة العربية (234 نصاً)
 • دعم كامل للعرض من اليمين إلى اليسار (RTL)
 • إضافة خيار «العربية» في قائمة اللغات
+• تعريب وضع السمة ودورات الفحص (يومي/أسبوعي/يدوي)
+• تحسينات إمكانية الوصول لقارئات الشاشة:
+  - إعلان حالة التحديد في الشرائح وشريط التنقل
+  - دمج وصف البطاقات القابلة للنقر
+  - أهداف لمس 48dp
+  - إعلانات تلقائية (Live Regions) لتغيّرات الحالة
 • بناء موقّع رقمياً بمفتاح توقيع مخصص
 • يشمل جميع ميزات v2.7: فتح القفل بالوجه، وإشعارات الحماية التلقائية
 
 v2.7-ar — Arabic Edition
-• Full Arabic UI translation (228 strings)
+• Full Arabic UI translation (234 strings)
 • Full RTL layout support
 • Arabic added to the language selector
+• Theme mode & scan frequency localized (Daily/Weekly/Manual)
+• Accessibility improvements for screen readers:
+  - Selection state announced in filters & bottom nav
+  - Merged descriptions for clickable cards
+  - 48dp touch targets
+  - Live regions for status changes
 • Digitally signed with a dedicated release key
-• Includes all v2.7 features: Face Unlock, Auto-Guard toast notifications
+• Includes all v2.7 features: Face Unlock, Auto-Guard toasts
