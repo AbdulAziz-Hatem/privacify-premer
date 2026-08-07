@@ -152,7 +152,7 @@ fun SensorLogScreen(
                             text = stringResource(R.string.sensorlog_empty),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                             modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
                         )
                         Spacer(modifier = Modifier.height(8.dp))

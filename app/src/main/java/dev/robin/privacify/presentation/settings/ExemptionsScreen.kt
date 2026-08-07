@@ -172,7 +172,7 @@ fun ExemptionsScreen(onBack: () -> Unit) {
 							text = stringResource(R.string.exemptions_empty),
 							style = MaterialTheme.typography.titleMedium,
 							fontWeight = FontWeight.Bold,
-							color = MaterialTheme.colorScheme.onSurface
+							color = MaterialTheme.colorScheme.onSurface,
 							modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
 						)
 						Spacer(modifier = Modifier.height(MdSpacing.xxs))
