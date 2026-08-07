@@ -274,4 +274,8 @@
 	<string name="theme_dark_mode">الوضع الداكن</string>
 	<string name="theme_system_default">الافتراضي من النظام</string>
 	<string name="ds_not_blocked">غير محظور</string>
+	<string name="autoguard_service_notification">الحماية التلقائية نشطة</string>
+	<string name="autoguard_service_notification_desc">مراقبة الوصول إلى المستشعرات</string>
+	<string name="autoguard_toast_blocked">تم حظر %1$s تلقائياً</string>
+	<string name="autoguard_toast_unblocked">تم إلغاء حظر %1$s تلقائياً</string>
 </resources>

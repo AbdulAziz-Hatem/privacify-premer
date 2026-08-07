@@ -270,4 +270,8 @@
 	<string name="theme_dark_mode">Dark Mode</string>
 	<string name="theme_system_default">System Default</string>
 	<string name="ds_not_blocked">Not blocked</string>
+	<string name="autoguard_service_notification">Auto-Guard is active</string>
+	<string name="autoguard_service_notification_desc">Monitoring sensor access</string>
+	<string name="autoguard_toast_blocked">%1$s blocked automatically</string>
+	<string name="autoguard_toast_unblocked">%1$s unblocked automatically</string>
 </resources>

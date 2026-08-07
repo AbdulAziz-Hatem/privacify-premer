@@ -10,6 +10,8 @@
 	<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
 	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
 	<uses-permission android:name="rikka.shizuku.permission.V3" />
@@ -80,6 +82,14 @@
 				android:name="android.appwidget.provider"
 				android:resource="@xml/widget_privacy_controls_info" />
 		</receiver>
+			<service
+			android:name=".core.autoguard.AutoGuardService"
+			android:exported="false"
+			android:foregroundServiceType="specialUse">
+			<property
+				android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+				android:value="sensor_usage_monitoring" />
+		</service>
 	</application>
 
 </manifest>
