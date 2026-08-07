@@ -65,6 +65,7 @@ import dev.robin.privacify.ui.theme.RedVibrant
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.role
 
 @Composable
 fun LockdownScreen(

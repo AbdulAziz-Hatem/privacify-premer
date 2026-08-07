@@ -81,6 +81,7 @@ import dev.robin.privacify.ui.theme.PurpleVibrant
 import dev.robin.privacify.ui.theme.RedVibrant
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.role
 
 @Composable
 fun SettingsScreen(onNavigateToExemptions: () -> Unit = {}) {
