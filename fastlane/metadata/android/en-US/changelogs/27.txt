@@ -1,5 +1,5 @@
 v2.7-ar — النسخة العربية
-• ترجمة كاملة لواجهة التطبيق إلى اللغة العربية (234 نصاً)
+• ترجمة كاملة لواجهة التطبيق إلى اللغة العربية (239 نصاً)
 • دعم كامل للعرض من اليمين إلى اليسار (RTL)
 • إضافة خيار «العربية» في قائمة اللغات
 • تعريب وضع السمة ودورات الفحص (يومي/أسبوعي/يدوي)
@@ -7,12 +7,18 @@ v2.7-ar — النسخة العربية
   - إعلان حالة التحديد في الشرائح وشريط التنقل
   - دمج وصف البطاقات القابلة للنقر
   - أهداف لمس 48dp
-  - إعلانات تلقائية (Live Regions) لتغيّرات الحالة
+  - إعلانات تلقائية (Live Regions) لكل التغييرات الديناميكية
+• محرك الحماية التلقائية (Auto-Guard) — مفتوح المصدر الآن:
+  - حظر تلقائي للميكروفون/الكاميرا/الموقع
+  - إلغاء الحظر مؤقتاً أثناء المكالمات واستخدام الكاميرا والملاحة
+  - كتابة أحداث حقيقية في سجل المستشعرات
+  - إشعارات Toast عند كل حظر/إلغاء
+• إصلاح حالة بطاقات المستشعرات لقارئات الشاشة (غير محظور)
 • بناء موقّع رقمياً بمفتاح توقيع مخصص
 • يشمل جميع ميزات v2.7: فتح القفل بالوجه، وإشعارات الحماية التلقائية
 
 v2.7-ar — Arabic Edition
-• Full Arabic UI translation (234 strings)
+• Full Arabic UI translation (239 strings)
 • Full RTL layout support
 • Arabic added to the language selector
 • Theme mode & scan frequency localized (Daily/Weekly/Manual)
@@ -20,6 +26,12 @@ v2.7-ar — Arabic Edition
   - Selection state announced in filters & bottom nav
   - Merged descriptions for clickable cards
   - 48dp touch targets
-  - Live regions for status changes
+  - Live regions for all dynamic changes
+• Auto-Guard engine — now open source:
+  - Automatic mic/camera/location blocking
+  - Pauses during calls, camera use, and navigation
+  - Writes real events to the sensor log
+  - Toast notifications on every block/unblock
+• Fixed sensor card state for screen readers (Not blocked)
 • Digitally signed with a dedicated release key
 • Includes all v2.7 features: Face Unlock, Auto-Guard toasts
