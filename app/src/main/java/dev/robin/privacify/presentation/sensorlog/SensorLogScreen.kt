@@ -66,6 +66,9 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
 
 @Composable
 fun SensorLogScreen(
@@ -150,6 +153,7 @@ fun SensorLogScreen(
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
+                            modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(

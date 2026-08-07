@@ -69,6 +69,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import dev.robin.privacify.ui.theme.ExpressiveExtraLargeIncreased
 import dev.robin.privacify.ui.theme.MdSpacing
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
 
 private const val PREFS_NAME = "privacify_prefs"
 
@@ -170,6 +173,7 @@ fun ExemptionsScreen(onBack: () -> Unit) {
 							style = MaterialTheme.typography.titleMedium,
 							fontWeight = FontWeight.Bold,
 							color = MaterialTheme.colorScheme.onSurface
+							modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
 						)
 						Spacer(modifier = Modifier.height(MdSpacing.xxs))
 						Text(

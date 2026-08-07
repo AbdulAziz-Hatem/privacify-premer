@@ -82,6 +82,9 @@ import dev.robin.privacify.ui.theme.RedVibrant
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.role
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.liveRegion
 
 @Composable
 fun SettingsScreen(onNavigateToExemptions: () -> Unit = {}) {
@@ -333,13 +336,17 @@ private fun SettingsRow(
 	iconTint: Color,
 	iconBackground: Color,
 	onClick: (() -> Unit)? = null,
+	subtitleLiveRegion: Boolean = false,
 	trailing: @Composable (() -> Unit)? = null
 ) {
 	Row(
 		modifier = Modifier
 			.fillMaxWidth()
 			.then(
-				if (onClick != null) Modifier.semantics(mergeDescendants = true) { role = Role.Button }.clickable { onClick() }
+				if (onClick != null) Modifier.semantics(mergeDescendants = true) {
+					role = Role.Button
+					if (subtitleLiveRegion) liveRegion = LiveRegionMode.Polite
+				}.clickable { onClick() }
 				else Modifier
 			)
 			.padding(horizontal = 16.dp, vertical = 14.dp),
@@ -401,6 +408,7 @@ private fun GeneralSection(
 				SettingsRow(
 					title = stringResource(R.string.settings_scan_frequency),
 					subtitle = state.scanFrequencyLabel,
+					subtitleLiveRegion = true,
 					icon = Icons.Outlined.Radar,
 					iconTint = PurpleVibrant,
 					iconBackground = PurpleVibrant.copy(alpha = 0.12f),
@@ -410,6 +418,7 @@ private fun GeneralSection(
 				SettingsRow(
 					title = stringResource(R.string.settings_theme),
 					subtitle = state.themeLabel,
+					subtitleLiveRegion = true,
 					icon = Icons.Outlined.DarkMode,
 					iconTint = MaterialTheme.colorScheme.tertiary,
 					iconBackground = MaterialTheme.colorScheme.tertiaryContainer,
@@ -428,7 +437,7 @@ private fun AdvancedSection(
 	onRefreshRuntimeStatus: () -> Unit,
 	onRequestShizukuPermission: () -> Unit
 ) {
-	val shellOptions = listOf("Auto", "Root", "Shizuku")
+	val shellOptions = listOf(stringResource(R.string.shell_auto), stringResource(R.string.shell_root), stringResource(R.string.shell_shizuku))
 
 	Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
 		Row(
@@ -500,18 +509,19 @@ private fun AdvancedSection(
 												if (isSelected) PurpleVibrant
 												else MaterialTheme.colorScheme.surfaceBright
 											)
-											.clickable {
+											.semantics { liveRegion = LiveRegionMode.Polite }
+											.selectable(selected = isSelected, onClick = {
 												val newValue = when (option) {
-													"Root" -> "root"
-													"Shizuku" -> "shizuku"
+													stringResource(R.string.shell_root) -> "root"
+													stringResource(R.string.shell_shizuku) -> "shizuku"
 													else -> "auto"
 												}
 												onShellTypeChange(newValue)
-												if (option == "Shizuku" && state.shizukuStatus != "Ready") {
+												if (option == stringResource(R.string.shell_shizuku) && state.shizukuStatus != "Ready") {
 													onRequestShizukuPermission()
 												}
 												onRefreshRuntimeStatus()
-											}
+											}, role = Role.Tab)
 											.padding(horizontal = 16.dp, vertical = 8.dp)
 									) {
 										Text(
