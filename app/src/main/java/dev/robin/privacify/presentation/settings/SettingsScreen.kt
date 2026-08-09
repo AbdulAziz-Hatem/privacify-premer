@@ -591,7 +591,6 @@ private fun AdvancedSection(
 private fun AboutSection() {
 	val context = LocalContext.current
 	val uriHandler = LocalUriHandler.current
-	var showUpdateProDialog by remember { mutableStateOf(false) }
 	val versionName = remember {
 		try {
 			context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: "1.0.0"
@@ -629,28 +628,6 @@ private fun AboutSection() {
 				)
 				PrivacifyDivider(modifier = Modifier.padding(start = 56.dp))
 				SettingsRow(
-					title = stringResource(R.string.settings_check_updates),
-					subtitle = stringResource(R.string.settings_check_updates_subtitle),
-					icon = Icons.Outlined.CloudDownload,
-					iconTint = MaterialTheme.colorScheme.primary,
-					iconBackground = MaterialTheme.colorScheme.primaryContainer,
-					onClick = {
-						if (ProFeature.isAutoGuardAvailable()) {
-							try {
-								val intent = Intent().apply {
-									setClassName(context, "dev.robin.privacify.pro.update.UpdateActivity")
-									putExtra("manual_check", true)
-									addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-								}
-								context.startActivity(intent)
-							} catch (_: Exception) {}
-						} else {
-							showUpdateProDialog = true
-						}
-					}
-				)
-				PrivacifyDivider(modifier = Modifier.padding(start = 56.dp))
-				SettingsRow(
 					title = stringResource(R.string.settings_version),
 					subtitle = versionName,
 					icon = Icons.Outlined.Info,
@@ -661,13 +638,6 @@ private fun AboutSection() {
 		}
 	}
 
-	if (showUpdateProDialog) {
-		PrivacifyProDialog(
-			featureName = stringResource(R.string.settings_auto_update),
-			description = stringResource(R.string.settings_auto_update_desc),
-			onDismiss = { showUpdateProDialog = false }
-		)
-	}
 }
 
 @Composable

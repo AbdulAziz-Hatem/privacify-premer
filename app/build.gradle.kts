@@ -3,9 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
 }
 
-val isProBuild = gradle.startParameter.taskNames.any { task ->
-	task.contains("Pro", ignoreCase = true)
-}
 
 android {
     namespace = "dev.robin.privacify"
@@ -57,38 +54,10 @@ android {
         }
     }
 
-	sourceSets {
-		if (isProBuild) {
-			val proDir = File(project.rootDir.parentFile, "privacify_pro/app/src/main")
-			if (!proDir.exists()) {
-				throw GradleException("Pro module not found at $proDir. The privacify_pro/ directory is required for pro builds.")
-			}
-			getByName("main") {
-				java.srcDirs(File(proDir, "java"))
-			}
-			getByName("debug").manifest.srcFile(File(proDir, "AndroidManifest.xml"))
-			getByName("release").manifest.srcFile(File(proDir, "AndroidManifest.xml"))
-		}
-	}
 }
 
-tasks.register("assembleProDebug") {
-	dependsOn("assembleDebug")
-	description = "Assembles a debug build with Pro features (root/Shizuku hardware controls)"
-	group = "build"
-}
 
-tasks.register("assembleProRelease") {
-	dependsOn("assembleRelease")
-	description = "Assembles a release build with Pro features (root/Shizuku hardware controls)"
-	group = "build"
-}
 
-tasks.register("installProDebug") {
-	dependsOn("installDebug")
-	description = "Builds and installs debug APK with Pro features"
-	group = "install"
-}
 
 dependencies {
     implementation(libs.androidx.core.ktx)

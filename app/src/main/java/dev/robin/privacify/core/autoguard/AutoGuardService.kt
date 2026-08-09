@@ -146,8 +146,9 @@ class AutoGuardService : Service() {
         callActive = isCallMode(audioManager.mode)
         val foreground = getForegroundApp()
 
-        val micBlock = micOn && !callActive
-        val cameraBlock = cameraOn && !(cameraInUse && isCameraApp(foreground))
+        val isMicApp = isCommunicationApp(foreground) || callActive
+        val micBlock = micOn && !isMicApp
+        val cameraBlock = cameraOn && !isCameraApp(foreground)
         val locationBlock = locationOn && !isNavApp(foreground)
 
         if (micBlock != lastMic) {
@@ -241,4 +242,11 @@ class AutoGuardService : Service() {
             .setOngoing(true)
             .build()
     }
+
+    private fun isCommunicationApp(pkg: String?): Boolean {
+        if (pkg == null) return false
+        val commApps = setOf("com.whatsapp", "org.telegram.messenger", "com.tencent.mm", "com.viber.voip", "com.facebook.orca", "com.discord")
+        return commApps.contains(pkg) || pkg.contains("dialer") || pkg.contains("telecom") || pkg.contains("messaging")
+    }
+
 }
