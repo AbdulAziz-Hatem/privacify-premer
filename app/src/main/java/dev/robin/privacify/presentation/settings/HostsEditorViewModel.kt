@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import dev.robin.privacify.R
+import dev.robin.privacify.core.utils.AppContextProvider
 import dev.robin.privacify.data.root.HostsFileManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -62,7 +64,7 @@ class HostsEditorViewModel : ViewModel() {
 				_state.update {
 					it.copy(
 						newDomain = "",
-						statusMessage = if (success) "Blocked $domain" else "Failed to add rule"
+						statusMessage = if (success) AppContextProvider.context.getString(R.string.hosts_blocked_domain, domain) else AppContextProvider.context.getString(R.string.hosts_failed_add)
 					)
 				}
 			}
@@ -78,7 +80,7 @@ class HostsEditorViewModel : ViewModel() {
 			withContext(Dispatchers.Main) {
 				_state.update {
 					it.copy(
-						statusMessage = if (success) "Hosts file saved" else "Failed to save hosts file"
+						statusMessage = if (success) AppContextProvider.context.getString(R.string.hosts_saved) else AppContextProvider.context.getString(R.string.hosts_failed_save)
 					)
 				}
 			}

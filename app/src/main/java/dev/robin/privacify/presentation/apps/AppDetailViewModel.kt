@@ -6,6 +6,8 @@ import android.content.pm.PackageManager
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import dev.robin.privacify.R
+import dev.robin.privacify.core.utils.AppContextProvider
 import dev.robin.privacify.domain.apps.AppRiskLevel
 import dev.robin.privacify.domain.root.RootManager
 import kotlinx.coroutines.Dispatchers
@@ -131,7 +133,7 @@ class AppDetailViewModel(
 
     fun forceRevokePermissions() {
         if (!_isRooted.value) {
-            _actionResult.value = "Root access required"
+            _actionResult.value = AppContextProvider.context.getString(R.string.msg_root_required)
             return
         }
         viewModelScope.launch(Dispatchers.IO) {
@@ -146,7 +148,7 @@ class AppDetailViewModel(
             }
             val success = executeRootCommand(cmd.toString())
             withContext(Dispatchers.Main) {
-                _actionResult.value = if (success) "Permissions revoked" else "Failed to revoke permissions"
+                _actionResult.value = if (success) AppContextProvider.context.getString(R.string.msg_permissions_revoked) else AppContextProvider.context.getString(R.string.msg_permissions_revoke_failed)
             }
             loadAppDetails() // Refresh
         }
@@ -154,20 +156,20 @@ class AppDetailViewModel(
 
     fun freezeApp() {
         if (!_isRooted.value) {
-            _actionResult.value = "Root access required"
+            _actionResult.value = AppContextProvider.context.getString(R.string.msg_root_required)
             return
         }
         viewModelScope.launch(Dispatchers.IO) {
             val success = executeRootCommand("pm disable-user --user 0 $packageName")
             withContext(Dispatchers.Main) {
-                _actionResult.value = if (success) "App frozen" else "Failed to freeze app"
+                _actionResult.value = if (success) AppContextProvider.context.getString(R.string.msg_app_frozen) else AppContextProvider.context.getString(R.string.msg_app_freeze_failed)
             }
         }
     }
 
     fun blockSensorAccess() {
         if (!_isRooted.value) {
-            _actionResult.value = "Root access required"
+            _actionResult.value = AppContextProvider.context.getString(R.string.msg_root_required)
             return
         }
         viewModelScope.launch(Dispatchers.IO) {
@@ -177,7 +179,7 @@ class AppDetailViewModel(
             }
             val success = executeRootCommand(cmd)
             withContext(Dispatchers.Main) {
-                _actionResult.value = if (success) "Sensor access blocked" else "Failed to block sensors"
+                _actionResult.value = if (success) AppContextProvider.context.getString(R.string.msg_sensor_blocked) else AppContextProvider.context.getString(R.string.msg_sensor_block_failed)
             }
         }
     }
