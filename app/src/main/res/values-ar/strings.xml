@@ -278,4 +278,19 @@
 	<string name="autoguard_service_notification_desc">مراقبة الوصول إلى المستشعرات</string>
 	<string name="autoguard_toast_blocked">تم حظر %1$s تلقائياً</string>
 	<string name="autoguard_toast_unblocked">تم إلغاء حظر %1$s تلقائياً</string>
+	<string name="dashboard_status_subtitle">تم التحقق من سلامة النظام. لم يتم الكشف عن أي وصول غير مصرح به.</string>
+	<string name="hosts_blocked_domain">تم حظر %1$s</string>
+	<string name="hosts_failed_add">فشل في إضافة القاعدة</string>
+	<string name="hosts_saved">تم حفظ ملف Hosts</string>
+	<string name="hosts_failed_save">فشل في حفظ ملف Hosts</string>
+	<string name="msg_root_required">يتطلب صلاحيات Root</string>
+	<string name="msg_permissions_revoked">تم سحب الأذونات</string>
+	<string name="msg_permissions_revoke_failed">فشل في سحب الأذونات</string>
+	<string name="msg_app_frozen">تم تجميد التطبيق</string>
+	<string name="msg_app_freeze_failed">فشل في تجميد التطبيق</string>
+	<string name="msg_sensor_blocked">تم حظر الوصول للمستشعر</string>
+	<string name="msg_sensor_block_failed">فشل في حظر المستشعرات</string>
+	<string name="tile_lockdown_active">الإغلاق التام نشط</string>
+	<string name="tile_lockdown_inactive">الإغلاق التام غير نشط</string>
+	<string name="scanner_no_sensitive_perms">لم يتم منح أذونات حساسة</string>
 </resources>

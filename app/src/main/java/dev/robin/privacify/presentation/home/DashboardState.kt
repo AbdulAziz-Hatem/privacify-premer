@@ -1,8 +1,10 @@
+import dev.robin.privacify.R
+import dev.robin.privacify.core.utils.AppContextProvider
 package dev.robin.privacify.presentation.home
 
 data class DashboardUiState(
 	val privacyScore: Int = 100,
-	val statusSubtitle: String = "System integrity verified. No unauthorized access detected.",
+	val statusSubtitle: String = AppContextProvider.context.getString(R.string.dashboard_status_subtitle),
 	val totalApps: Int = 0,
 	val totalPermissions: Int = 0,
 	val highRiskCount: Int = 0,

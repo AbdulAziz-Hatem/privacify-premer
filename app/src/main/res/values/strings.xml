@@ -274,4 +274,19 @@
 	<string name="autoguard_service_notification_desc">Monitoring sensor access</string>
 	<string name="autoguard_toast_blocked">%1$s blocked automatically</string>
 	<string name="autoguard_toast_unblocked">%1$s unblocked automatically</string>
+	<string name="dashboard_status_subtitle">System integrity verified. No unauthorized access detected.</string>
+	<string name="hosts_blocked_domain">Blocked %1$s</string>
+	<string name="hosts_failed_add">Failed to add rule</string>
+	<string name="hosts_saved">Hosts file saved</string>
+	<string name="hosts_failed_save">Failed to save hosts file</string>
+	<string name="msg_root_required">Root access required</string>
+	<string name="msg_permissions_revoked">Permissions revoked</string>
+	<string name="msg_permissions_revoke_failed">Failed to revoke permissions</string>
+	<string name="msg_app_frozen">App frozen</string>
+	<string name="msg_app_freeze_failed">Failed to freeze app</string>
+	<string name="msg_sensor_blocked">Sensor access blocked</string>
+	<string name="msg_sensor_block_failed">Failed to block sensors</string>
+	<string name="tile_lockdown_active">Lockdown active</string>
+	<string name="tile_lockdown_inactive">Lockdown inactive</string>
+	<string name="scanner_no_sensitive_perms">No sensitive permissions granted</string>
 </resources>
